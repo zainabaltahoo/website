@@ -6,7 +6,7 @@
 en:
   languageCode: en-us
   # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
-  #contentDir: content/en
+  contentDir: content/en
 
 # Uncomment the lines below to configure your website in a second language.
 #zh:
@@ -20,3 +20,33 @@ en:
 #      - name: 传
 #        url: '#about'
 #        weight: 1
+
+ar:
+  languageCode: ar
+  contentDir: content/ar
+  title: موقع د. محمد المرزوق
+  params:
+    Description: موقع د. محمد المرزوق قسم نظم المعلومات كلية العلوم الإدارية جامعة الكويت
+    main:
+      - name: المقررات
+        url: 'courses'
+        weight: 15
+      - name: رئيسة
+        url: '/'
+        weight: 10
+      # - name: المواضيع
+      #   url: '#posts'
+      #   weight: 20
+      # - name: المشاريع
+      #   url: '#projects'
+      #   weight: 30
+      # - name: المحاضرات
+      #   url: '#talks'
+      #   weight: 40
+      # - name: الأبحاث
+      #   url: '#featured'
+      #   weight: 50
+      - name: تواصل
+        url: '#contact'
+        weight: 60
+      
