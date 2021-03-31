@@ -1,9 +1,9 @@
 ---
 # Page title
-title: ISOM 350 - Business Application Development
+title: The Blog Project
 
 # Title for the menu link if you wish to use a shorter link title, otherwise remove this option.
-linktitle: Overview
+linktitle: The Blog Project
 
 # Page summary for search engines.
 summary: Second programming course for MIS majors utilizing Python to build data-driven business applications.
@@ -15,7 +15,7 @@ date: 2021-03-23
 type: book
 
 # Position of this page in the menu. Remove this option to sort alphabetically.
-weight: 1
+weight: 10
 
 draft: False
 
@@ -40,7 +40,6 @@ We will mainly use the replit.com cloud IDE for development. To setup for this c
 - Read the [Syllabus](https://bit.ly/mis350_syl)
 - Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
 - Signup for [github.com](https://github.com/join)
-- Completion of an introductory course in programming (Doesn't have to be Python)
 
 
 ## Optional Requirements
@@ -130,12 +129,3 @@ NOTEs:
 - Having useful commit messages
 - Taking advantage of new features
 - minimum number of models, forms, and view functions
-
-
-## useful tutorials
-
-- https://pymbook.readthedocs.io/en/latest/
-- https://www.learnpython.org/
-- https://thepythonguru.com/
-- https://pythonbasics.org/
-- 
