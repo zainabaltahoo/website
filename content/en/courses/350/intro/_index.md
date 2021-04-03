@@ -15,49 +15,22 @@ type: book
 weight: 1
 
 draft: False
-
-# Featured image
-# To use, place an image named `featured.jpg/png` in your page's folder.
-# Placement options: 1 = Full column width, 2 = Out-set, 3 = Screen-width
-# Focal point options: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight
-# Set `preview_only` to `true` to just use the image for thumbnails.
-image:
-  placement: 1
-  caption: "Python logo"
-  focal_point: "smart"
-  preview_only: false
-  alt_text: Python logo
-
 ---
 
-## Requirements
+We will cover a number of prerequisites for the course before we dive into web application development. Specifically, we will need to cover the following topics:
 
-- [ ] Blogger can post on blog where text, title, and time of posting is shown
-- [ ] Blog post can be draft or published
-- [ ] Blog posts will have titles, readable urls (called slugs and generated from title), a body, and will show the date and time it was created and edited
-- [ ] Blogger can edit blog posts and system will show last time it was updated
-- [ ] Website will show a list of blogposts with summary of the body
-- [ ] User can select a post from the list of blog posts to view the details
-- [ ] Assume there is a single author for all blog posts that never change 
+1. [Quick Python review, including Object Oriented]({{< ref "python.md" >}}) Programming and some useful Python features.
+2. [Remote collaboration]({{< ref "collab.md" >}}) on software projects.
+3. [Project management]({{< ref "proj-mgt.md" >}}) for team based projects.
+4. [Overview of web applications]({{< ref "webapplications.md" >}}).
+5. [Overview of the Django development process]({{< ref "dev-process.md" >}}).
 
-#### Some Useful Tips
+Following this introduction, we can start with our first project for this course where you will create [Blog web application]({{< ref "blog-project" >}}).
 
-- Consider the requirements as a checklist that you check everytime you complete one. When you have completed all requirements then your project is complete. 
-- For most requirements, you will go through the the process described in the [Django Development Process]({{< ref dev-process.md >}})
+## Exercises and Assignments
 
-## ER-Diagram
+As we progress this course we will work together on the Blog project and learn something new about Django every week and improve the project. You are expected to get familiar with django by complete the steps in the Blog project prior to each class. **Reading the Django documentation related to each step is a must**.
 
-The ER-Diagram describes the data requirements and will be used for constructing the project's data models in models.py. The blog data model is currently very simple and contains a single entity:
+**Following each week**, you will also be assigned to work on specific requirements for the Poll project. You are expected to work on this project on your own and apply what you learned from the previous week.
 
-```mermaid
-erDiagram
-    POST {
-        string title
-        string slug
-        string body
-        datetime created_on
-        datetime updated_on
-        int status 
-    }
-    
-```
+**In the second half of the semester**, you will be required to work on your final project as a group and utilize the tools for remote team collaboration and project management.
