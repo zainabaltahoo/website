@@ -211,6 +211,8 @@ You can see the HTML document is readable. If it is opened by the browser it wil
 {{< figure src="courses/350/html.png" caption="HTML Page Example" >}}
 - **CSS:** Cascading Style Sheets. It is the way in which to control the styles, colors, fonts and how the text looks in HTML pages. Best practice is to use HTML to design the structure of the page, then setting the formatting and colors of the page using CSS.
 
+To further experiment and learn about HTML you can use this [HTML scratch pad](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_basic_document) to experement with writing HTML. Use this [HTML tutorial](https://www.w3schools.com/html/) to learn what tags you can use.
+
 
 ### Where Does Django Fit In?
 

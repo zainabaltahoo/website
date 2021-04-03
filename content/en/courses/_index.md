@@ -1,5 +1,5 @@
 ---
-title: Courses taught by Mohammad AlMarzouq
+title: Courses
 # cms_exclude: true
 
 # View.

@@ -3,7 +3,7 @@
 title: ISOM 350 - Business Application Development
 
 # Title for the menu link if you wish to use a shorter link title, otherwise remove this option.
-linktitle: Overview
+linktitle: ISOM 350
 
 # Page summary for search engines.
 summary: Second programming course for MIS majors utilizing Python to build data-driven business applications.
