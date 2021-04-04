@@ -41,7 +41,7 @@ We will mainly use the replit.com cloud IDE for development. To setup for this c
 - Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
 - Signup for [github.com](https://github.com/join)
 - Completion of an introductory course in programming (Doesn't have to be Python)
-
+- Get familiar with [Django's Documentation](https://docs.djangoproject.com/en/3.1/)
 
 ## Optional Requirements
 {{< spoiler text="Click to view.." >}}
@@ -138,4 +138,12 @@ NOTEs:
 - https://www.learnpython.org/
 - https://thepythonguru.com/
 - https://pythonbasics.org/
-- 
+
+
+## ToDo
+- [ ] Assignment on Models (must refer students to documentation)
+- [ ] Assignment on creating single objects
+- [ ] assignment on querysets
+- [ ] assignment on updating a single object
+- [ ] assignment on updating multiple objects
+- [ ] Maybe talk to them about the django shell?

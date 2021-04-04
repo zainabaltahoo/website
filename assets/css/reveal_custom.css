@@ -1,0 +1,9 @@
+.reveal .slide-background-content {
+    background-image: url("/icon.png");
+    background-position: right top;
+    background-size: 20%;
+    opacity: 0.15;
+}
+.reveal table td {
+    border-bottom: 0px;
+}

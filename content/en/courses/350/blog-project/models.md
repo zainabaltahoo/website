@@ -114,4 +114,4 @@ class Post(models.Model):
     return self.title
 ```
 
-With that our model is complete and we can move to the next step of configuring the Admin Interface to manage these models.
+With that our model is complete and we can move to the next step of configuring the Admin Interface to manage these models. For more information please refer to [Django's documentation on database models](https://docs.djangoproject.com/en/3.1/topics/db/models/).
