@@ -39,23 +39,19 @@ We will mainly use the replit.com cloud IDE for development. To setup for this c
 
 - Read the [Syllabus](https://bit.ly/mis350_syl)
 - Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
-- Signup for [github.com](https://github.com/join)
+- Signup for [{{< icon name="github" pack="fab" >}}github.com](https://github.com/join)
+  - Then join our [{{< icon name="github" pack="fab" >}}GitHub classroom](https://classroom.github.com/classrooms/17110202-mis350-spring21)
 - Completion of an introductory course in programming (Doesn't have to be Python)
-- Get familiar with [Django's Documentation](https://docs.djangoproject.com/en/3.1/)
+- Get familiar with [{{< icon name="python" pack="fab" >}}Django's Documentation](https://docs.djangoproject.com/en/3.1/)
 
 ## Optional Requirements
 
 - Textbook from Prerequisite course is a useful reference:
 
-```
-Tony Gaddis, Starting Out with Python, Global Edition, 4th Edition
-Haywood Community College, 2019
-```
 
-https://www.pearson.com/uk/educators/higher-education-educators/program/Gaddis-Starting-Out-with-Python-Global-Edition-4th-Edition/PGM1963337.html
-
-https://collegestudenttextbook.org/product/starting-out-with-python-global-4th-edition-ebook/
-
+  Tony Gaddis, [Starting Out with Python](
+https://www.pearson.com/uk/educators/higher-education-educators/program/Gaddis-Starting-Out-with-Python-Global-Edition-4th-Edition/PGM1963337.html), Global Edition, 4th Edition
+  Haywood Community College, 2019 [{{< icon name="file-pdf" pack="fas" >}} Purchase Online](https://collegestudenttextbook.org/product/starting-out-with-python-global-4th-edition-ebook/)
 
 {{< spoiler text="view other optional requirements.." >}}
 While this is not required, should you choose to run a Django development server locally on your machine to avoid using the internet while development, you will need to install the following packages:

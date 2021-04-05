@@ -6,7 +6,7 @@ title: Mohammad AlMarzouq
 superuser: true
 
 # Role/position/tagline
-role: Assistant Profession of Information Systems
+role: Assistant Professor of Information Systems
 
 # Organizations/Affiliations to show in About widget
 organizations:
@@ -14,7 +14,7 @@ organizations:
   url: https://www.cba.edu.kw
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include distributed robotics, mobile computing and programmable matter.
+# bio: My research interests include distributed robotics, mobile computing and programmable matter.
 
 # Interests to show in About widget
 interests:

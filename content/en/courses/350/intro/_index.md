@@ -17,6 +17,10 @@ weight: 1
 draft: False
 ---
 
+{{% callout note %}}
+Slides for this section can be found [here]({{< ref "/slides/350/intro/index.md" >}})
+{{% /callout %}}
+
 We will cover a number of prerequisites for the course before we dive into web application development. Specifically, we will need to cover the following topics:
 
 1. [Quick Python review, including Object Oriented]({{< ref "python.md" >}}) Programming and some useful Python features.

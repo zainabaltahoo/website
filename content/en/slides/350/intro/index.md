@@ -103,7 +103,7 @@ All instructions available on course website.
 
 ## The Introduction
 
-1. [Quick Python review, including Object Oriented]({{< ref "python.md" >}}) Programming and some useful Python features.
+1. [Quick Python review, including Object Oriented]({{< ref "courses/350/intro/python.md" >}}) Programming and some useful Python features.
 2. [Remote collaboration]({{< ref "collab.md" >}}) on software projects.
 3. [Project management]({{< ref "proj-mgt.md" >}}) for team based projects.
 4. [Overview of web applications]({{< ref "webapplications.md" >}}).
@@ -158,7 +158,7 @@ Almost everything you learned in VB is transferrable to Python, including:
 - Loops
 - Variables ... etc
 
-Will be covered in more detail in the lab, but you can get a head start by [reading the resources in class website]({{< ref "python#online-resources" >}})
+Will be covered in more detail in the lab, but you can get a head start by [reading the resources in class website]({{< ref "courses/350/intro/python.md#online-resources" >}})
 
 
 ---
