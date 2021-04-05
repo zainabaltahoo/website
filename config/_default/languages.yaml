@@ -27,9 +27,10 @@ ar:
   title: موقع د. محمد المرزوق
   params:
     Description: موقع د. محمد المرزوق قسم نظم المعلومات كلية العلوم الإدارية جامعة الكويت
+  menu:
     main:
       - name: المقررات
-        url: 'courses'
+        url: '/courses'
         weight: 15
       - name: رئيسة
         url: '/'

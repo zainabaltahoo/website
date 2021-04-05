@@ -1,11 +1,11 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: "Spring21 350"
-subtitle: ""
+title: "مرحبا بكم في ISOM 350"
+subtitle: "بعض التوجيهات لطلبة المقرر للفصل الدراسي الثاني ٢٠٢٠-٢٠٢١"
 summary: ""
-authors: []
-tags: []
+authors: [admin]
+tags: [python, welcome]
 categories: []
 date: 2021-04-05T06:42:45+03:00
 lastmod: 2021-04-05T06:42:45+03:00
@@ -27,3 +27,7 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 ---
+
+المحتوى الأساسي للمقرر سيكون على هذا الموقع، ويمكنكم الوصول إليه من خلال [رابط المقررات]({{< ref "courses" >}}) في القائمة العلوية.
+
+**ملاحظة**: محتوى المقرر لم يترجم للعربية بعد ويمكنكم المشاركة بذلك، الرجاء التواصل مع استاذ المقرر حال كونكم تودون المشاركة في تعريب المحتوى
