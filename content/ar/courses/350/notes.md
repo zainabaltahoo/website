@@ -97,6 +97,7 @@ NOTEs:
 - https://github.com/tiimgreen/github-cheat-sheet
 - Using tickets on github effectively: https://guides.github.com/features/issues/
 - projects are great!!! https://docs.github.com/en/github/managing-your-work-on-github/about-project-boards
+- OOP VIDEOS: https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc
 
 ### Criteria for assessing projects
 - Using GitHub for coordination properly
