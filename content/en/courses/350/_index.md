@@ -40,7 +40,7 @@ We will mainly use the replit.com cloud IDE for development. To setup for this c
 - Read the [Syllabus](https://bit.ly/mis350_syl)
 - Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
 - Signup for [{{< icon name="github" pack="fab" >}}github.com](https://github.com/join)
-  - Then join our [{{< icon name="github" pack="fab" >}}GitHub classroom](https://classroom.github.com/classrooms/17110202-mis350-spring21)
+  - Then check MS Teams for announcement on how to join the GitHub classroom.
 - Completion of an introductory course in programming (Doesn't have to be Python)
 - Get familiar with [{{< icon name="python" pack="fab" >}}Django's Documentation](https://docs.djangoproject.com/en/3.1/)
 

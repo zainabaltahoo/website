@@ -39,6 +39,7 @@ We will utilize the boards available on GitHub to manage projects. Each project 
 5. Add an issue to GitHub issues and makes sure it is transferred as a ticket to the To Do list whenever a new feature is requested or a bug is found or a task needs to be completed by the team
 
 ## Team members' tasks
+
 1. Choose a ticket from the To Do column to work in, by moving it to the In Progress column and assigning the ticket to themselves so the ticket shows their name on it. Member should not forget the [workflow]({{< ref "collab.md#our-workflow" >}}) and must create a branch for working on that ticket.
 2. Once the work is completed for the ticket, the member must submit a pull request through github to merge the work branch to the master branch. If the pull request was created, then the member can move the ticket to the done column.
 3. If the member is aware of new features, bugs, or tasks, then they can contribute by adding tickets to the To Do column.

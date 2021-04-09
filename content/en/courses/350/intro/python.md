@@ -18,6 +18,10 @@ draft: False
 
 ---
 
+{{% callout note %}}
+Slides for this section can be found [here]({{< ref "/slides/350/python/index.md" >}})
+{{% /callout %}}
+
 ## Prerequisite
 
 Having completed and introductory course in programming is required. It doesn't have to be in Python as the ideas are still the same.
