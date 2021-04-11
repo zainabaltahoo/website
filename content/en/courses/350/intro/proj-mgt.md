@@ -22,9 +22,18 @@ draft: False
 
 ---
 
-Project management is about ensuring that the project is performed to specification and within time and resource budget. This involves ensuring each team member knows what they are supposed to do.
+Project management is about ensuring that the project is completed to specification and within time and resource budget. This involves ensuring each team member knows what they are supposed to do.
 
 We will depart from traditional project management and use a more agile approach. The main difference is that with agile development requirements are expected to change and so the team uses tools and works with the expectation that requirements can change. The success of such an approach will require that each member has initiative and is able to perform some level of self management, such as using the tools put in place to manage the team and is able to select tasks to perform themselves.
+
+Project member role
+- Have a suggestion for a new feature or want to report a bug
+- want a task to work on
+
+Project manager role
+- Guide the project
+- Ensure everyone has a task
+- Monitor the project
 
 We will utilize the boards available on GitHub to manage projects. Each project must start with requirements, including data requirements. Specifically, a Kanban board must be created under the project tab on github, with three columns:
 1. To do

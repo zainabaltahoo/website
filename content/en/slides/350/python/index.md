@@ -505,3 +505,11 @@ GraduateStudent will use the newly defined constructor but execute the Student c
   - We think about code organization at analysis and design stage
   - Contemporary tools for visualizing SAD information builds heavily on OOP (e.g., UML)
 - Even if you do not turn out to be a programmer understanding OOP will be critical for MIS majors.
+
+---
+
+## Video Summary of OOP
+
+Be sure to view the whole 6 video series
+
+{{< youtube ZDa-Z5JzLYM >}}
