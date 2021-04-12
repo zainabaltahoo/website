@@ -246,7 +246,7 @@ def list_students_in_course(course): #...
 ## Simple Class Example
 
 ```python
-Class Student:
+class Student:
   pass
 
 # to use it we must create instance
@@ -266,7 +266,7 @@ There is no uniform structure for variable... let's fix this
 
 Constructor would allow us to set instance variables at time of instantiation:
 ```python
-Class Student:
+class Student:
   def __init__(self, sname, sid):
     self.name = sname
     self.id = sid
@@ -283,7 +283,7 @@ Now all instances will have a name and sid, but what about functions?
 
 Just define the methods as part of the class.
 ```python
-Class Student:
+class Student:
   def __init__(self, sname, sid):
     self.name = sname
     self.id = sid
@@ -304,7 +304,7 @@ Methods are used on instances but defined in classes.
 
 We can also create a class for Courses:
 ```python
-Class Course:
+class Course:
   def __init__(self, cname):
     self.students = []
     self.name = cname
