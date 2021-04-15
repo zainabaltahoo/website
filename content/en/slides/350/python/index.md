@@ -316,44 +316,6 @@ Can you think of other classes that fit this example?
 
 ---
 
-## Object Oriented Programming (OOP)
-
-- Where is the benefit here?
-  - Mainly in code reusability
-  - OOP allows for **inheritance**
-    - Meaning, that we can derive a new class from another
-
----
-
-## Inheritance
-
-- For example, we can create a new kind of student called, GraduateStudent.
-- GraduateStudent behaves in the same way as the student class, but is able to teach some courses.
-- So we **extend** the Student class to create a new GraduateStudent class as such:
-  
-```python
-class GraduateStudent(Student):
-  def teach_class(self, course): # ...
-```
-
----
-
-## Inheritance
-
-- The Class GraduateStudent is now a SubClass of Student Class.
-- The Student class is now a SuperClass of the GraduateStudent class.
-
----
-
-## Inheritance
-
-- Now the GraduateStudent has all the variables and functions that are part of the Student class.
-- We also added a teach_class function that is unique to the GraduateStudent
-- We don't have to redefine the register_course or drop_course functions, we can just use them!
-- With improved reusability, ability for a development team to coordinate improves
-
----
-
 ## Objects Vs Classes
 
 - You cannot use classes like you do variable or function, you must create an instance of them
@@ -365,79 +327,9 @@ class GraduateStudent(Student):
 ```python
 # THIS IS WRONG!
 
-Student.register(course) # Which student will python register?
+Student.register_course(course) # Which student will python register?
 
 ```
-
----
-
-## Creating an Instance
-
-```python
-# Create a Student Instance where the name variable will be set
-# to mohammed, and the id variable set to 1234
-student = Student("mohammed",1234)
-
-# Now we can use the functions
-student.register_course(course)
-
-print(student.name) # will print mohammed
-```
-
----
-
-
-## Creating an Instance of a SubClass
-
-```python
-# The GraduateStudent subclass uses the same constructor
-student = GraduateStudent("Abdullah",2345)
-
-# But has the additional method we defined
-student.teach_course(course)
-
-# Methods from Student class can also be used
-student.teach_course(grad_course)
-
-```
-
----
-
-## Extending Methods in SubClasses
-
-- If we want to change the implementation of methods in subclasses, just redefine them, this includes **the constructor**:
-
-```python
-class GraduateStudent(Student):
-  def __init__(self, name, sid):
-    # redefine the constructor to do something different here
-    self.thesis_title = #....
-    self.name = name
-    self.sid = sid
-    
-  def teach_class(self, course): # ...
-```
-
-GraduateStudent will use the newly defined constructor
-
----
-
-## Using super
-
-- When redefining methods, you can even reuse the method from the SuperClass:
-```python
-class GraduateStudent(Student):
-  def __init__(self, name, sid):
-    # This will execute the same method from the super class
-    super().__init__(name, sid)
-    # Then you can do additional stuff 
-    # specific for GraduateStudents
-    self.thesis_title = #....
-
-
-  def teach_class(self, course): # ...
-```
-GraduateStudent will use the newly defined constructor but execute the Student constructor first.
 
 ---
 
@@ -482,10 +374,121 @@ GraduateStudent will use the newly defined constructor but execute the Student c
 ## Speaking of Functions and Variables
 
 - Variables defined in objects also get a name change to distinguish them from regular variables
-  - We call them instance variables or properties
+  - We call them instance variables, properties, or attributes
   - Similarly, everything you know about variables apply to them
   - Only difference is scope
 - The whole idea of putting variables in classes is to make them in scope for class methods for easy access
+
+---
+
+## Object Oriented Programming (OOP)
+
+- Where is the benefit here?
+  - Mainly in code reusability
+  - OOP allows for **inheritance**
+    - Meaning, that we can derive a new class from another
+
+---
+
+## Inheritance
+
+- For example, we can create a new kind of student called, GraduateStudent.
+- GraduateStudent behaves in the same way as the student class, but is able to teach some courses.
+- So we **extend** the Student class to create a new GraduateStudent class as such:
+  
+```python
+class GraduateStudent(Student):
+  def teach_class(self, course): # ...
+```
+
+---
+
+## Inheritance
+
+- The Class GraduateStudent is now a SubClass of Student Class.
+- The Student class is now a SuperClass of the GraduateStudent class.
+
+---
+
+## Inheritance
+
+- Now the GraduateStudent has all the variables and functions that are part of the Student class.
+- We also added a teach_class function that is unique to the GraduateStudent
+- We don't have to redefine the register_course or drop_course functions, we can just use them!
+- With improved reusability, ability for a development team to coordinate improves
+
+---
+
+## Creating an Instance
+
+```python
+# Create a Student Instance where the name variable will be set
+# to mohammed, and the id variable set to 1234
+s1 = Student("mohammed",1234)
+
+# Now we can use the functions
+s1.register_course(course)
+
+print(s1.name) # will print mohammed
+```
+
+---
+
+
+## Creating an Instance of a SubClass
+
+```python
+# The GraduateStudent subclass uses the same constructor
+s2 = GraduateStudent("Abdullah",2345)
+
+# But has the additional method we defined
+s2.teach_course(course)
+
+# Methods from Student class can also be used
+s2.teach_course(grad_course)
+
+# Properties from Student class also exist
+print(s2.name) # will print abdullah
+
+```
+
+---
+
+## Extending Methods in SubClasses
+
+- If we want to change the implementation of methods in subclasses, just redefine them, this includes **the constructor**:
+
+```python
+class GraduateStudent(Student):
+  def __init__(self, name, sid):
+    # redefine the constructor to do something different here
+    self.thesis_title = #....
+    self.name = name
+    self.sid = sid
+    
+  def teach_class(self, course): # ...
+```
+
+GraduateStudent will use the newly defined constructor
+
+---
+
+## Using super
+
+- When redefining methods, you can even reuse the method from the SuperClass:
+```python
+class GraduateStudent(Student):
+  def __init__(self, name, sid):
+    # This will execute the same method from the super class
+    super().__init__(name, sid)
+    # Then you can do additional stuff 
+    # specific for GraduateStudents
+    self.thesis_title = #....
+
+
+  def teach_class(self, course): # ...
+```
+GraduateStudent will use the newly defined constructor but execute the Student constructor first.
 
 ---
 
@@ -493,7 +496,7 @@ GraduateStudent will use the newly defined constructor but execute the Student c
 
 - Anything you can build with OOP you can build with regular structured programming
 - We did mention that OOP makes code more reusable and improves team collaboration
-  - We will use Inheritence heavily with Django to reconfigure parts of Django for our needs
+  - We will use Inheritance heavily with Django to reconfigure parts of Django for our needs
   - Without OOP the configurations that we need to do would become much more complex
 
 ---
@@ -504,9 +507,57 @@ GraduateStudent will use the newly defined constructor but execute the Student c
   - Now we try to group related functionality and data together
   - We think about code organization at analysis and design stage
   - Contemporary tools for visualizing SAD information builds heavily on OOP (e.g., UML)
-- Even if you do not turn out to be a programmer understanding OOP will be critical for MIS majors.
 
 ---
+
+### Even if you do not turn out to be a programmer understanding OOP will be critical for MIS majors.
+
+---
+
+## Other Useful Tip
+
+- You can change what message is displayed if an object of a class was printed by redefining the special `__str__` method.
+- For example:
+  
+```python
+s1 = Student("mohammed",1234)
+print(s1) 
+# will display:
+# <__main__.Student object at 0x7fb768be4910>
+```
+
+---
+
+## Redefining The __str__ Method
+
+- Let's add the `__str__` method that just returns a string.
+- We can use fstrings and reference instance variables using `self.`
+- Notice here we want to include the name and if stored in the object:
+  
+```python
+class Student:
+  #..
+  def __str__(self):
+    return f"<Student {self.name} {self.id}>"
+  #..
+```
+
+---
+
+## The Output
+
+- Now printing the Student object will give a different output:
+
+```python
+s1 = Student("mohammed",1234)
+print(s1) 
+# will display:
+# <Student mohammed 1234>
+```
+
+
+---
+
 
 ## Video Summary of OOP
 
