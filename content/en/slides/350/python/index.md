@@ -1,10 +1,10 @@
 ---
-title: Slides
-summary: ISOM 350 Introduction
+title: Python Review
+summary: Review of main Python concepts needed in this course along with the introduction of some advance concepts like exceptions, list comprehensions, and OOP
 authors: []
-tags: []
+tags: [isom350]
 categories: []
-date: "2019-02-05T00:00:00Z"
+date: "2021-04-14T13:12:45Z"
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon

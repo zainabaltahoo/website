@@ -40,9 +40,15 @@ We will mainly use the replit.com cloud IDE for development. To setup for this c
 - Read the [Syllabus](https://bit.ly/mis350_syl)
 - Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
 - Signup for [{{< icon name="github" pack="fab" >}}github.com](https://github.com/join)
-  - Then check MS Teams for announcement on how to join the GitHub classroom.
+  - Complete the first [GitHub assignment to join our GitHub classroom](https://classroom.github.com/a/vOMY045D)
 - Completion of an introductory course in programming (Doesn't have to be Python)
-- Get familiar with [{{< icon name="python" pack="fab" >}}Django's Documentation](https://docs.djangoproject.com/en/3.1/)
+
+## Required References
+
+- {{< icon name="book-open" pack="fas" >}} This website starting with [Introduction section]({{< ref "courses/350/intro" >}})
+- [{{< icon name="file-powerpoint" pack="fas" >}}Slides for this course]({{< ref "courses/350/slides" >}})
+- [{{< icon name="python" pack="fab" >}}Django's Documentation](https://docs.djangoproject.com/en/3.1/)
+
 
 ## Optional Requirements
 
@@ -68,4 +74,9 @@ pip install django
 
 ## Study Plan
 
-coming soon...
+
+| Week  | Topic  | Slides | Assignment  |
+|---|---|---|---|
+| 1 | [Introduction]({{< ref "courses/350/intro" >}})  |  [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/intro" >}}) | [Complete course requirements]({{< ref "courses/350/#requirements">}})  |
+| 2 |  [PyReview]({{< ref "courses/350/intro/python" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/python" >}})  |  [Form Project Teams on GitHub](https://classroom.github.com/g/kxc1jQKA) |
+| 3 |  [Collaboration]({{< ref "courses/350/intro/collab" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/collab" >}})  |   |
