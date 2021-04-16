@@ -1,4 +1,8 @@
 github.com/malmarz/wowchemy-hugo-modules/wowchemy v0.0.0-20210318205220-5fce0db647aa h1:j2tc/vs/MhzNMghpjLoTjPcGClQ5/M0lBsFmCJd6Zd8=
 github.com/malmarz/wowchemy-hugo-modules/wowchemy v0.0.0-20210318205220-5fce0db647aa/go.mod h1:77kQM9y/WcsBPVPQjciEDXbPF9lZXtc2RZgNx5+zZX0=
+github.com/malmarz/wowchemy-hugo-modules/wowchemy v0.0.0-20210416145829-79dbbb5ecfad h1:MGqfKqeImNQP8C1qrrcD3i91zJ9nP95zztvJOKZM2xw=
+github.com/malmarz/wowchemy-hugo-modules/wowchemy v0.0.0-20210416145829-79dbbb5ecfad/go.mod h1:77kQM9y/WcsBPVPQjciEDXbPF9lZXtc2RZgNx5+zZX0=
 github.com/malmarz/wowchemy-hugo-modules/wowchemy-cms v0.0.0-20210318205220-5fce0db647aa h1:I9RbcPz64qbPF4xh+DTYXvO/WS7F721K2q0yLPSyA0E=
 github.com/malmarz/wowchemy-hugo-modules/wowchemy-cms v0.0.0-20210318205220-5fce0db647aa/go.mod h1:+3oHddpc77Plfo0FZsh4xsGBwNgxs68YvwfGliYbR48=
+github.com/malmarz/wowchemy-hugo-modules/wowchemy-cms v0.0.0-20210416145829-79dbbb5ecfad h1:XUKW62u2AyVsUMzrcHSdWj7iaCkge0NE1foZ9zt3knY=
+github.com/malmarz/wowchemy-hugo-modules/wowchemy-cms v0.0.0-20210416145829-79dbbb5ecfad/go.mod h1:+3oHddpc77Plfo0FZsh4xsGBwNgxs68YvwfGliYbR48=
