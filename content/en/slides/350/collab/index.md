@@ -17,7 +17,7 @@ slides:
   diagram: true
   diagram_options:
     # Mermaid diagram themes include: default,base,dark,neutral,forest
-    theme: base
+    theme: dark
 
   # RevealJS slide options.
   # Options are named using the snake case equivalent of those in the RevealJS docs.
@@ -93,7 +93,7 @@ Collaboration in Software Development
 
 --- 
 
-## Class Workflow
+## Developer Workflow for Our Course
 
 ```mermaid
 graph TD
@@ -109,3 +109,60 @@ graph TD
     D -- Task or Fix Complete --> E
     E --> A
 ```
+
+---
+
+## Branches and Pull Requests
+
+- Always create a branch from main/master to start your work
+- Once done, create a pull request to ask the project manager to include your work (merge it) to the project
+- Discussion can be started around a pull request where manager can ask members to fix problems in their work
+- Pull request is completed if it is successfully merged
+
+---
+
+
+{{< figure src="courses/350/pr-create.png" caption="Creating a Pull Request in Same Repo" >}}
+
+---
+
+{{< figure src="courses/350/pr-create2.png" caption="Creating a Pull Request To Different Repo" >}}
+
+---
+
+{{< figure src="courses/350/pr-discussion.png" >}}
+
+---
+
+## Git and GitHub
+
+- You need to distinguish between these two
+- Git is the tool we use to keep track of the changes made to our source code and combine our work
+- GitHub is the cloud platform hosting our git repositories
+- GitHub also introduced social coding and project management features to be used with Git
+
+---
+
+## What About Replit?
+
+- Replit is an cloud based IDE
+- You use it to write code
+- You can pull and push code between it and GitHub
+
+---
+
+## What About Replit?
+- When you work alone you pull/import your work to replit.
+- When you want your team to see your work you push it to GitHub from replit.
+- You work is cloned (i.e., copied) to Replit and another on GitHub
+- Each team member gets their own clone of the project code
+
+
+---
+
+## What If I Cannot Use GitHub?
+
+- Part of your evaluation in this course is based on how well you collaborate through GitHub
+- Using Git and GitHub is a very important skill for developers and managers in this age
+- You can complete your final project using Synchronous collaboration on replit.com
+  - Your grade will suffer from this
