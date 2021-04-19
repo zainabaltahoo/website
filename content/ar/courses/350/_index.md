@@ -44,6 +44,14 @@ image:
 - اتمام مقرر مبادئ في البمجة (لا يشترط أن يكون بلغة البايثون)
 - التعود على قراءة [دليل استخدام {{< icon name="python" pack="fab" >}}Django](https://docs.djangoproject.com/en/3.1/)
 
+## المصادر المطلوبة
+
+- {{< icon name="book-open" pack="fas" >}} هذا الموقع ابتداءً [بالمقدمة]({{< ref "courses/350/intro" >}})
+- [{{< icon name="file-powerpoint" pack="fas" >}}شرائح العرض لهذا المقرر]({{< ref "courses/350/slides" >}})
+- [{{< icon name="python" pack="fab" >}}دليل استخدام Django](https://docs.djangoproject.com/en/3.1/)
+
+
+
 ## متطلبات اختيارية
 
 - الكتاب لمقرر مبادئ البرمجة سكون مفيد كمرجع للغة وننصح باقتنائه وهو:
@@ -68,4 +76,9 @@ pip install django
 
 ## خطة الدراسة
 
-قريباً.....
+| Week  | Topic  | Slides | Assignment  |
+|---|---|---|---|
+| 1 | [المقدمة]({{< ref "courses/350/intro" >}})  |  [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/intro" >}}) | [أكمل متطلبات المقرر]({{< ref "courses/350/#requirements">}})  |
+| 2 |  [مراجعة لغة البايثون]({{< ref "courses/350/intro/python" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/python" >}})  |  [إنشاء فريق على GitHub](https://classroom.github.com/g/kxc1jQKA) |
+| 3 |  [التعاون و التطوير الجماعي]({{< ref "courses/350/intro/collab" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/collab" >}})  | [تمرين على التطوير الجماعي](https://classroom.github.com/g/7iv9aOyv)  |
+| 3 |  [إدارة المشروع]({{< ref "courses/350/intro/proj-mgt" >}}) | | [شارك في ترجمة هذا الموقع](https://github.com/mis350/website-translation) |

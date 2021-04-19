@@ -1,10 +1,10 @@
 ---
-title: Slides
+title: Introduction
 summary: ISOM 350 Introduction
 authors: []
-tags: []
+tags: [isom350]
 categories: []
-date: "2019-02-05T00:00:00Z"
+date: "2021-04-10T13:12:39Z"
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon
