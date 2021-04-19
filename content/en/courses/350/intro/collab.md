@@ -51,6 +51,7 @@ then share the repl url from the browser:
 {{< figure src="courses/350/team-repl-alt.png" caption="Sharing Existing Repl" >}}
 
 
+
 # 2- Asynchronous Collaboration
 
 In asynchronous collaboration, each member of the collaborating team would work on the project in their own time and do not need to interact directly with other team members. Instead, a system is used to manage how each member changes the code of the project and to enable the consolidation of work from multiple members into a single code base. This is by far the most effective and widely used method of collaboration in programming. Currently, the most popular system used to manage synchronous collaboration is git, which is provided by github.com.

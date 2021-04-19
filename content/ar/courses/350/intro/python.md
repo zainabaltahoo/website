@@ -18,6 +18,10 @@ draft: False
 
 ---
 
+{{% callout note %}}
+Slides for this section can be found [here]({{< ref "/slides/350/python/index.md" >}})
+{{% /callout %}}
+
 ## Prerequisite
 
 Having completed and introductory course in programming is required. It doesn't have to be in Python as the ideas are still the same.
@@ -111,5 +115,6 @@ An example of a class would be Human. When you see a human, you can recognize th
 In addition to the organizational benefits of OOP, like hiding complexity (called encapsulation), it also introduces the concept of inheritence where we can derive one class from another, which allows us to reuse code. **We will be using OOP and espciailly inheritence heavily in this course**. For more details, please refer to chapter 10 of the python textbook and read the [following article](https://realpython.com/python3-object-oriented-programming/)
 
 [{{< icon name="youtube" pack="fab" >}}Watch this YouTube video list](https://www.youtube.com/playlist?list=PL-osiE80TeTsqhIuOqKhwlXsIBIdSeYtc) for an excellent introduction to OOP
+
 
 {{< youtube ZDa-Z5JzLYM >}}
