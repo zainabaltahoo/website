@@ -81,3 +81,4 @@ pip install django
 | 2 |  [PyReview]({{< ref "courses/350/intro/python" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/python" >}})  |  [Form Project Teams on GitHub](https://classroom.github.com/g/kxc1jQKA) |
 | 3 |  [Collaboration]({{< ref "courses/350/intro/collab" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/collab" >}})  | [Collboration Exercise](https://classroom.github.com/g/7iv9aOyv)  |
 | 3 |  [Project Management]({{< ref "courses/350/intro/proj-mgt" >}}) | | [Help translate this website](https://github.com/mis350/website-translation) |
+| 3 |  [Web Applications]({{< ref "courses/350/intro/webapplications" >}}) | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/webapps" >}})  |  |
