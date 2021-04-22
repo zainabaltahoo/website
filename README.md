@@ -9,7 +9,7 @@
 
 - The translation involves the files under `/content/en/courses/` and `/content/ar/courses/`. You can **IGNORE** all other files.
 - When in doubt, contant your instructor with questions.
-- Bonus pointس will be based on the number of lines you translate, which can be viewed under the [insights tab](https://github.com/mis350/website-translation/graphs/contributors)
+- Bonus points will be based on the number of lines you translate, which can be viewed under the [insights tab](https://github.com/mis350/website-translation/graphs/contributors)
 
 # How to Participate in Translation
 
