@@ -25,7 +25,7 @@
 
 4- Create a branch named after the ticket you chose and your name, for example `mohammad-translate-design.md`
 
-5- Work on the translation and continue to commit to the branch. For that, first copy the file under `/content/en/courses/` to the same directory under `/content/ar/courses/`. Then directly translate the file under `/content/ar/courses/` only.
+5- Work on the translation and continue to commit to the branch. For that, first copy the file you are translating from `/content/en/courses/` to the same directory under `/content/ar/courses/`. Then directly translate the newly copied file under `/content/ar/courses/` only.
 
 6- Once you are done with the task, commit and push for the last time then create a pull request to merge your branch to the main branch on GitHub, and you are done!
 
