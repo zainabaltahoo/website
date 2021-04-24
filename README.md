@@ -12,6 +12,19 @@
 - When in doubt, contant your instructor with questions.
 - Bonus points will be based on the number of lines you translate, which can be viewed under the [insights tab](https://github.com/mis350/website-translation/graphs/contributors)
 
+# Creating Pull Requests
+
+### Wrong pull request
+
+![Screen Shot 2021-04-24 at 5 14 36 PM](https://user-images.githubusercontent.com/17110015/115961866-03baa700-a521-11eb-95e0-dc0f4f2bc20e.png)
+
+### Correct Pull Requests
+
+![Screen Shot 2021-04-24 at 5 16 12 PM](https://user-images.githubusercontent.com/17110015/115961878-12a15980-a521-11eb-9013-23ba2197fd04.png)
+
+![Screen Shot 2021-04-24 at 5 16 53 PM](https://user-images.githubusercontent.com/17110015/115961879-146b1d00-a521-11eb-8bf7-e2c0d87be7e8.png)
+
+
 # How to Participate in Translation
 
 1- Go to the [Project Board](https://github.com/mis350/website-translation/projects/1) and look for a tranlation task under the **To Do** column:
