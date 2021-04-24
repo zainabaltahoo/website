@@ -82,3 +82,6 @@ pip install django
 | 2 |  [مراجعة لغة البايثون]({{< ref "courses/350/intro/python" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/python" >}})  |  [إنشاء فريق على GitHub](https://classroom.github.com/g/kxc1jQKA) |
 | 3 |  [التعاون و التطوير الجماعي]({{< ref "courses/350/intro/collab" >}})  | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "slides/350/collab" >}})  | [تمرين على التطوير الجماعي](https://classroom.github.com/g/7iv9aOyv)  |
 | 3 |  [إدارة المشروع]({{< ref "courses/350/intro/proj-mgt" >}}) | | [شارك في ترجمة هذا الموقع](https://github.com/mis350/website-translation) |
+| 4 |  [مقدمة لاستخدام Django]({{< ref "courses/350/intro/dev-process.md" >}}) | | |
+| 4 |  [إعداد المشروع]({{< ref "courses/350/blog-project/setup.md" >}}) | | |
+| 4 |  [نماذج البيانات]({{< ref "courses/350/blog-project/models.md" >}}) | | |
