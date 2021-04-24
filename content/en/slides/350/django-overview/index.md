@@ -1,5 +1,5 @@
 ---
-title: Django Overview
+title: Django Overview and Setup
 summary: Gives a general overview of the main steps in the Django development process
 authors: []
 tags: [isom350]
@@ -85,12 +85,28 @@ F -->|Refine or Work on Next Subproject|B
 
 ---
 
+Click Run{{< icon name="play" pack="fas" >}} to confirm proper setup
+
+{{< figure src="courses/350/dev-server.png" caption="Django Development Server Running" size=75% >}}
+
+---
+
 ### 2- Start App or Subproject
 
 - Code is organized in directories called apps
 - Apps should hold related functionality, for example
   - acounts, cart, blog, store ..etc
 - Project consists of single or multiple apps
+
+---
+
+### Creating an App
+
+- Using shell, type the following command:
+
+```bash
+python manage.py startapp blog
+```
 
 ---
 

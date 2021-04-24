@@ -1,10 +1,10 @@
 ---
-title: Collaboration
-summary: How to utilize available tools to enable developers to work together
+title: Django Models
+summary: Defining the models and a Django project
 authors: []
 tags: [isom350]
 categories: []
-date: "2021-04-16T13:12:50Z"
+date: "2021-04-24T14:49:39Z"
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon
