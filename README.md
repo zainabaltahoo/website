@@ -7,6 +7,7 @@
 
 # Important Note
 
+- Send your pull requests to `mis350/website-translation` repo.
 - The translation involves the files under `/content/en/courses/` and `/content/ar/courses/`. You can **IGNORE** all other files.
 - When in doubt, contant your instructor with questions.
 - Bonus points will be based on the number of lines you translate, which can be viewed under the [insights tab](https://github.com/mis350/website-translation/graphs/contributors)
@@ -27,7 +28,7 @@
 
 5- Work on the translation and continue to commit to the branch. For that, first copy the file you are translating from `/content/en/courses/` to the same directory under `/content/ar/courses/`. Then directly translate the newly copied file under `/content/ar/courses/` only.
 
-6- Once you are done with the task, commit and push for the last time then create a pull request to merge your branch to the main branch on GitHub, and you are done!
+6- Once you are done with the task, commit and push for the last time then create a pull request to merge your branch to the main branch on GitHub to the `mis350/website-translation` repo, and you are done!
 
 7- Now you can find another translation task to work on
 
