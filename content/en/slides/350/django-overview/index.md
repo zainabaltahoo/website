@@ -61,20 +61,22 @@ F -->|Refine or Work on Next Subproject|B
 
 ---
 
-## Synchronous Collaboration
-
-- Developer working together on the same file at the same time
-- Enabled using replit.com multiplayer repls
-- Great for knowledge sharing
-  - A form of eXprogramming
+## The Steps
 
 --- 
 
-## Synchronous Collaboration Limitation
+### 1- Project Setup
 
-- Requires time scheduling
-- Limited number of participants (Usually 2)
-- Member contribution not tracked
+- Creates directory structure for project files
+- Done once at the beginning of the project
+
+---
+
+### Project Setup Methods
+
+1. **(Recommended for this course)** Creating a **Django Template** project in replit.com. 
+2. Importing an existing Django project from GitHub. GitHub project can be a new Django project or forked from a Django project. Use this option when you want to collaborate on an existing project.
+3. Using **shell** you type a command to create a Django project.
 
 ---
 
