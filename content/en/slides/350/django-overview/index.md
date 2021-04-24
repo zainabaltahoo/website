@@ -68,109 +68,174 @@ F -->|Refine or Work on Next Subproject|B
 ### 1- Project Setup
 
 - Creates directory structure for project files
+- Specific files for specific functionality
 - Done once at the beginning of the project
 
 ---
 
 ### Project Setup Methods
 
-1. **(Recommended for this course)** Creating a **Django Template** project in replit.com. 
-2. Importing an existing Django project from GitHub. GitHub project can be a new Django project or forked from a Django project. Use this option when you want to collaborate on an existing project.
+1. **(Recommended)** Creating a **Django Template** project in replit.com. 
+2. Importing an existing Django project from GitHub.
 3. Using **shell** you type a command to create a Django project.
 
 ---
 
-## Asynchronous Collaboration
-
-- Developers working together over time
-- Enabled using Git and GitHub
-  - Integrated with replit.com
-- Requires agreement on workflow
-- Better fit for large group collaboration and effort tracking
+{{< figure src="courses/350/project-structure.png" caption="Project Structure" >}}
 
 ---
 
-## Asynchronous Collaboration Limitations
+### 2- Start App or Subproject
 
-- Steep learning curve
-- Overhead to using the tools
-  - Greater benefits with larger groups
-  - Still useful for individuals
-- Benefit of using collaboration tools might not be clear
-- Success dependent on choice from endless workflows
+- Code is organized in directories called apps
+- Apps should hold related functionality, for example
+  - acounts, cart, blog, store ..etc
+- Project consists of single or multiple apps
 
+---
+
+{{< figure src="courses/350/app.png" caption="Example App Directory" >}}
+
+---
+
+### 3- Define Data Models
+
+- Data models describe how the data in your project looks like
+  - Determined in System Analysis and Design 
+  - ER-Diagrams
+
+
+---
+
+### 3- Define Data Models
+
+- Models used to abstractly manage database storage and retrieval
+  - Database type and credentials configured in `mysite/settings.py`
+- Each model will have a corresponding database table that is created automatically
+  
 --- 
 
-## Developer Workflow for Our Course
+### Example models.py File
 
-```mermaid
-graph TD
-    A[Find new Task]
-    B[Create New Branch]
-    C[Work on Task]
-    D[Commit Work Done]
-    E[Send Pull Request to Project Manager]
-    A --> B
-    B --> C
-    C --> D
-    D -- Bug Exists --> C
-    D -- Task or Fix Complete --> E
-    E --> A
+```python
+from django.db import models
+
+class Author(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    country = models.CharField(max_length=100)
+
+class Book(models.Model):
+    artist = models.ForeignKey(
+      Musician, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars = models.IntegerField()
+
 ```
 
 ---
 
-## Branches and Pull Requests
+### 4- Create View Function
 
-- Always create a branch from main/master to start your work
-- Once done, create a pull request to ask the project manager to include your work (merge it) to the project
-- Discussion can be started around a pull request where manager can ask members to fix problems in their work
-- Pull request is completed if it is successfully merged
-
----
-
-
-{{< figure src="courses/350/pr-create.png" caption="Creating a Pull Request in Same Repo" >}}
+- Main application server functionality
+- Function for each web app functionality
+- Handle HTTP request and generate HTTP response
+  - First argument of the function is always the request
+  - Must return an HTTP response
 
 ---
 
-{{< figure src="courses/350/pr-create2.png" caption="Creating a Pull Request To Different Repo" >}}
+### Example views.py File
+
+```python
+from django.http import HttpResponse
+import datetime
+
+def current_datetime(request):
+    now = datetime.datetime.now()
+    html = "<html><body>It is now %s.</body></html>" % now
+    return HttpResponse(html)
+```
 
 ---
 
-{{< figure src="courses/350/pr-discussion.png" >}}
+### 5- Wire URLs
+
+- Assign a URL path to the view function
+- This step will make the functionality available to the users
+- Done by updating the file `mysite/urls.py`
+  - Called the root urls.py file
 
 ---
 
-## Git and GitHub
+### Example Root urls.py
 
-- You need to distinguish between these two
-- Git is the tool we use to keep track of the changes made to our source code and combine our work
-- GitHub is the cloud platform hosting our git repositories
-- GitHub also introduced social coding and project management features to be used with Git
+```python
+from django.urls import include, path
+# Import the view function we created
+from timeapp.views import current_datetime 
 
----
-
-## What About Replit?
-
-- Replit is an cloud based IDE
-- You use it to write code
-- You can pull and push code between it and GitHub
+urlpatterns = [
+    # Mapp the path time/ to the view function current_datetime
+    path('time/', current_datetime, name='current-time'),
+]
+```
 
 ---
 
-## What About Replit?
-- When you work alone you pull/import your work to replit.
-- When you want your team to see your work you push it to GitHub from replit.
-- You work is cloned (i.e., copied) to Replit and another on GitHub
-- Each team member gets their own clone of the project code
+### 6- Create Template
 
+- Templates are text files that are like fstrings
+- The text file is usually an HTML file with some defined slots
+- Allows designers to work independently from developers
+- We insert dynamic data (called context) in these slots to generate a new dynamic web page
+- Can also have basic logic like if and loops
+  
+---
+
+
+### View Function Using Templates
+
+```python
+from django.shortcuts import render
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question': latest_question_list}
+    return render(request, 'polls/index.html', context)
+```
 
 ---
 
-## What If I Cannot Use GitHub?
+### The polls/index.html File
 
-- Part of your evaluation in this course is based on how well you collaborate through GitHub
-- Using Git and GitHub is a very important skill for developers and managers in this age
-- You can complete your final project using Synchronous collaboration on replit.com
-  - Your grade will suffer from this
+```
+<html>
+    <body>
+    {% if latest_question %}
+        <ul>
+            <li><a href="/polls/{{ latest_question.id }}/">{{ latest_question.question_text }}</a></li>
+        </ul>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+    </body>
+</html>
+```
+
+---
+
+```mermaid
+graph TD
+A[Setup Project] --> B["Start App for Subproject"]
+B --> C["Define Data Models"]
+C -->|"Work on Single Feature"| D[Create View Function] 
+D -->E["Wire URLs to View"]
+E -->F["Create Templates"]
+F -->|"Refine or Work on Next Feature"|D
+F -->|"Refine or Work on Next Subproject"|B
+```
