@@ -4,7 +4,7 @@ summary: Defining the models and a Django project
 authors: []
 tags: [isom350]
 categories: []
-date: "2021-04-24T14:49:39Z"
+date: "2021-04-25T10:00:32Z"
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon
@@ -44,125 +44,212 @@ slides:
 
 Mohammad AlMarzouq
 
-Django Project Setup
+Django Data Models
 
 ---
 
-## Types of Collaboration
+## What Are Django Models?
 
-- Synchronous
-- Asynchronous
+- Part of the Object-Relational Mapper (ORM)
+- The ORM maps:
+  - Data classes to relational database tables
+  - Data objects to rows in rational tables
+- Abstract database connections and queries
+  - Can connect to different db types
+  - You can write queries in Python
 
 ---
 
-## Synchronous Collaboration
+## Creating Models
 
-- Developer working together on the same file at the same time
-- Enabled using replit.com multiplayer repls
-- Great for knowledge sharing
-  - A form of eXprogramming
+- Subclass django.db.models.Model
+  - Gives the db functionality to our class
+- Each attribute is a model Field
+  - Used to configure the properties of our data
 
 --- 
 
-## Synchronous Collaboration Limitation
+## Creating Models
 
-- Requires time scheduling
-- Limited number of participants (Usually 2)
-- Member contribution not tracked
-
----
-
-## Asynchronous Collaboration
-
-- Developers working together over time
-- Enabled using Git and GitHub
-  - Integrated with replit.com
-- Requires agreement on workflow
-- Better fit for large group collaboration and effort tracking
+- Start with the ER-Diagram
+- Implement entities as models
+- Implement attributes of entities as fields in models
+- Relationships have special field types to represent them
 
 ---
 
-## Asynchronous Collaboration Limitations
+## Example ERD
 
-- Steep learning curve
-- Overhead to using the tools
-  - Greater benefits with larger groups
-  - Still useful for individuals
-- Benefit of using collaboration tools might not be clear
-- Success dependent on choice from endless workflows
-
---- 
-
-## Developer Workflow for Our Course
 
 ```mermaid
-graph TD
-    A[Find new Task]
-    B[Create New Branch]
-    C[Work on Task]
-    D[Commit Work Done]
-    E[Send Pull Request to Project Manager]
-    A --> B
-    B --> C
-    C --> D
-    D -- Bug Exists --> C
-    D -- Task or Fix Complete --> E
-    E --> A
+%%{init: { 'theme': 'forest' } }%%
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER {
+        int id
+        string name
+        string email
+    }
+    ORDER ||--|{ LINE-ITEM : contains
+    ORDER {
+        int id
+        string delivery_address
+        datetime placed_at
+        datetime delivered_at
+    }
+    LINE-ITEM {
+        string product_name
+        int quantity
+        float unit_price
+    }
 ```
 
 ---
 
-## Branches and Pull Requests
+## Customer Model
 
-- Always create a branch from main/master to start your work
-- Once done, create a pull request to ask the project manager to include your work (merge it) to the project
-- Discussion can be started around a pull request where manager can ask members to fix problems in their work
-- Pull request is completed if it is successfully merged
+```python
+from django.db import models
 
----
-
-
-{{< figure src="courses/350/pr-create.png" caption="Creating a Pull Request in Same Repo" >}}
-
----
-
-{{< figure src="courses/350/pr-create2.png" caption="Creating a Pull Request To Different Repo" >}}
+class Customer(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+```
+- Where is the id?
+- What about the relationship?
+- [What Field types are available?](https://docs.djangoproject.com/en/3.1/ref/models/fields/)
 
 ---
 
-{{< figure src="courses/350/pr-discussion.png" >}}
+## Order Model
+
+```python
+class Order(models.Model):
+    delivery_address = models.CharField(max_length=100)
+    placed_at = models.DateTimeField(auto_now_add=True)
+    delivered_at = models.DateTimeField(null=True, blank=True)
+    placed_by = models.ForeignKey(
+        'Customer',
+        on_delete=models.CASCADE,
+    )
+```
+- REMEMBER: One to many relationship always placed on the many side!
 
 ---
 
-## Git and GitHub
+## Order Model
 
-- You need to distinguish between these two
-- Git is the tool we use to keep track of the changes made to our source code and combine our work
-- GitHub is the cloud platform hosting our git repositories
-- GitHub also introduced social coding and project management features to be used with Git
-
----
-
-## What About Replit?
-
-- Replit is an cloud based IDE
-- You use it to write code
-- You can pull and push code between it and GitHub
+- DateTimeField Vs DateField
+- auto_now_add Vs auto_now
+  - auto_now_add: Set date/time to now upon creation
+  - auto_now: Update date/time with every dave
+- null vs blank
+  - null: What can be stored in db
+  - blank: Using for input validation (in forms)
 
 ---
 
-## What About Replit?
-- When you work alone you pull/import your work to replit.
-- When you want your team to see your work you push it to GitHub from replit.
-- You work is cloned (i.e., copied) to Replit and another on GitHub
-- Each team member gets their own clone of the project code
+## LineItem Model
+
+```python
+class Order(models.Model):
+    quantity = models.IntegerField(default=0)
+    product_name = models.CharField(max_length=100)
+    unit_price = models.FloatField(default=0)
+    contained_in = models.ForeignKey(
+        'Order',
+        on_delete=models.CASCADE,
+    )
+```
+
+---
+
+## Important Field Types
+
+- IntegerField, FloatField, BooleanField
+- CharField, EmailField, URLField, TextField
+- DateField, DateTimeField
+- ForeignKey, OneToOneField, ManyToManyField
+- FileField, ImageField
+- Complete list found in [Django Documentation](https://docs.djangoproject.com/en/3.1/ref/models/fields/)
+
+---
+
+## Field Options
+
+- Required Vs Optional
+- General Vs Specific
+- To know about them you must carefully read the [Django documentation on fields and field options](https://docs.djangoproject.com/en/3.1/ref/models/fields/)
+
+---
+
+## Important Field Options
+
+- null, blank (Generic)
+- auto_now_add, auto_now (Date/Time specific)
+- unique (True/False)
+- Limiting choices and input data
+
+---
+
+## Using choices Field Option
+
+- Limits data input to specific values
+- Typically used with IntegerField or CharField
+- Can display readable text instead of value
+- Choices are typically a tuple of 2-item tuples
+  - First item is input value
+  - Second item is display value
+---
+
+## Preparing the Choices
+
+```python
+class Post(models.Model):
+
+  STATUS = (
+    (0,"Draft"),
+    (1,"Publish")
+  )
+
+  title = models.CharField(max_length=200, unique=True)
+  #...
+  status = models.IntegerField(choices=STATUS, default=0)
+```
+
+---
+
+## Migrations
+
+- Models are defined, but we must instruct Django to create database tables
+- We use the migration management commands to prepare the database
+- Every time a model is created or redefined, the migration steps must be performs
+
+---
+
+## Performing Migrations
+
+Using the shell command on replit.com run the following commands:
+
+{{< figure src="makemigrations.png" >}}
+
+then 
+
+{{< figure src="migrate.png" >}}
 
 
 ---
 
-## What If I Cannot Use GitHub?
+- If you have properly installed your app, Django will prepare the database and create the tables
+- After these steps you can start development and building your webapp using these models
+- Just remember, if a change is made to the models or a new model is created, you must run these migration steps again
 
-- Part of your evaluation in this course is based on how well you collaborate through GitHub
-- Using Git and GitHub is a very important skill for developers and managers in this age
-- You can complete your final project using Synchronous collaboration on replit.com
-  - Your grade will suffer from this
+---
+
+## Recommended Readings from Django Documentation
+
+- [Models](https://docs.djangoproject.com/en/3.1/topics/db/models/)
+- [Model Fields and Options](https://docs.djangoproject.com/en/3.1/ref/models/fields/)
+- [Models Tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial02/)
+- [Migrations](https://docs.djangoproject.com/en/3.2/topics/migrations/)
+

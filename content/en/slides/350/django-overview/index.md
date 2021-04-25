@@ -114,6 +114,29 @@ python manage.py startapp blog
 
 ---
 
+### Adding The App to Our Project
+
+- In `mysite/settings.py`  update the `INSTALLED_APPS` list to include our new blog app:
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog',  # Make sure this line is added
+]
+```
+
+---
+
+### If you do not perform this step, Django will not see your app!
+Do not forget it
+
+---
+
 ### 3- Define Data Models
 
 - Data models describe how the data in your project looks like
