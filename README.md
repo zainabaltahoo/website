@@ -5,6 +5,9 @@
 - based on Hugo and wowchemy
 - Hosted with Netlify
 
+# Video Explanation of How To Participate
+
+[![](https://img.youtube.com/vi/ZGW_gwWeYDA/0.jpg)](https://youtu.be/ZGW_gwWeYDA)
 # Important Note
 
 - **Do not merge pull requests!**
