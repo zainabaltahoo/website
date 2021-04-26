@@ -1,117 +1,118 @@
 ---
-# Page title
-title: The Blog Project Models
+#عنوان الصفحة
+العنوان: نماذج مشروع المدونة
 
-# Title for the menu link if you wish to use a shorter link title, otherwise remove this option.
-linktitle: Models
 
-# Date page published
-date: 2021-03-23
+# عنوان رابط القائمة إذا كنت ترغب في استخدام عنوان ارتباط أقصر ، وإلا فقم بإزالة هذا الخيار .
+عنوان الارتباط: النماذج
 
-# Academic page type (do not modify).
-type: book
+# تاريخ نشر الصفحة
+التاريخ: 2021-03-23
 
-# Position of this page in the menu. Remove this option to sort alphabetically.
-weight: 2
+# نوع الصفحة الأكاديمية (لا تعدل).
+النوع: كتاب
 
-draft: False
+#مكان هذه الصفحة في القائمة. قم بإزالة هذا الخيار للترتيب أبجديًا.
+الوزن: 2
+
+مسودة: خطأ
 
 
 ---
 
-{{% callout note %}}
-Switch to branch **2-models** from **malmarz/isom350-blog** github repo to see this step's implementation
-{{% /callout %}}
+{{% مذكرة شرح %}}
+قم بالتبديل إلى الفرع ** 2-Models ** من ** malmarz / isom350-blog ** github repo لمشاهدة تنفيذ هذه الخطوة
+{{% /مذكرة شرح %}}
 
-Let's create the models needed for our blog project based on the ER-Diagram of the project:
+لنقم بإنشاء النماذج اللازمة لمشروع المدونة الخاص بنا بناءً على مخطط ER الخاص بالمشروع:
 
 ```mermaid
-erDiagram
-    POST {
-        string title
-        string slug
-        string body
-        datetime created_on
-        datetime updated_on
-        int status 
+رسم بياني
+    بريد {
+        عنوان السلسلة
+        سبيكة سلسلة
+        جسم السلسلة
+        تم الإنشاء في التاريخ والوقت
+        التاريخ والوقت updated_on
+        حالة كثافة العمليات
     }
     
 ```
 
-This is a simple project with a single entity called POST, where for each post we will store the title, slug (which is used to create a readable URL for the blog post), the body of the post, creation and update date, and finally the status. So let's open models.py and create the model:
+يعد هذا مشروعًا بسيطًا به كيان واحد يسمى POST ، حيث سنخزن لكل منشور العنوان ، و slug (الذي يستخدم لإنشاء عنوان URL قابل للقراءة لمنشور المدونة) ، ونص المنشور ، وتاريخ الإنشاء والتحديث ، و أخيرًا الوضع. لذلك دعونا نفتح نماذج. py وننشئ النموذج:
 
 ```python
-from django.db import models
+من نماذج الاستيراد django.db
 
-class Post(models.Model):
+فئة post (طرازات. نموذج):
 
 ```
 
-Here we have created a Post model, which means we want a table to in our database to store information about posts. But we still haven't defined what we will store about the post. For that, we need to define fields within the post. A field would allow us to define the name and type of data we want to store from the post.
+هنا قمنا بإنشاء نموذج Post ، مما يعني أننا نريد جدولًا في قاعدة البيانات الخاصة بنا لتخزين المعلومات حول المنشورات. لكننا ما زلنا لم نحدد ما سنخزنه حول المنشور. لذلك ، نحتاج إلى تحديد الحقول داخل المنشور. يسمح لنا الحقل بتحديد اسم ونوع البيانات التي نريد تخزينها من المنشور.
 
-Based on the ER-Diagram, we know that we want to store the title of the post, which is a string. So let's look at what kind of [fields are available in Django Documentation](https://docs.djangoproject.com/en/3.1/ref/models/fields/). If you look at the right hand column of the django model fields documentation, you will see a list of the type of fields we can include in our model. Let's look for a field type that would allow us to store string data. You can see there are many types of fields, some for integers, images, or emails. The fields that would allow us to store strings are either [CharField](https://docs.djangoproject.com/en/3.1/ref/models/fields/#charfield) or [TextField](https://docs.djangoproject.com/en/3.1/ref/models/fields/#textfield). Both allow us to store string as part of our Post model. But upon reading their documentation, CharfField is more appropriate when storing strings that have limited length, while TextField is used if the strings are long or require unlimited length. Titles typically have a limited number of characters that might not exceed 200 characters. So let's add a title field of type character with a maximum character limit of 200 characters:
+بناءً على مخطط ER ، نعلم أننا نريد تخزين عنوان المنشور ، وهو عبارة عن سلسلة. لذلك دعونا نلقي نظرة على نوع [الحقول المتوفرة في وثائق Django] (https://docs.djangoproject.com/en/3.1/ref/models/fields/). إذا نظرت إلى العمود الأيمن لوثائق حقول نموذج django ، فسترى قائمة بنوع الحقول التي يمكننا تضمينها في نموذجنا. دعنا نبحث عن نوع الحقل الذي يسمح لنا بتخزين بيانات السلسلة. يمكنك أن ترى أن هناك العديد من أنواع الحقول ، بعضها للأعداد الصحيحة أو الصور أو رسائل البريد الإلكتروني. الحقول التي تسمح لنا بتخزين السلاسل هي إما [CharField] (https://docs.djangoproject.com/en/3.1/ref/models/fields/#charfield) أو [TextField] (https: //docs.djangoproject .com / en / 3.1 / ref / Models / الحقول / # textfield). كلاهما يسمح لنا بتخزين سلسلة كجزء من نموذج Post الخاص بنا. ولكن عند قراءة وثائقهم ، يكون CharfField أكثر ملاءمة عند تخزين السلاسل ذات الطول المحدود ، بينما يتم استخدام TextField إذا كانت السلاسل طويلة أو تتطلب طولًا غير محدود. تحتوي العناوين عادةً على عدد محدود من الأحرف قد لا يتجاوز 200 حرف. لذلك دعونا نضيف حقل عنوان من نوع الحرف بحد أقصى 200 حرف:
 
 ```python
-from django.db import models
+من نماذج الاستيراد django.db
 
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+فئة post (طرازات. نموذج):
+    العنوان = النماذج. CharField (max_length = 200 ، فريد = صحيح)
 ```
-Notice also how you can set additional options for the title. Here we chose that the title is unique, meaning, Django will prevent anyone from creating the same titles for two different posts. Field options can also be found in the [Django Model Fields Documentation](https://docs.djangoproject.com/en/3.1/ref/models/fields/). Be sure to carefully read them and configure your models in the way you would like them to behave.
+لاحظ أيضًا كيف يمكنك تعيين خيارات إضافية للعنوان. هنا اخترنا أن العنوان فريد ، بمعنى أن Django سيمنع أي شخص من إنشاء نفس العناوين لمشاركتين مختلفتين. يمكن أيضًا العثور على خيارات الحقول في [وثائق حقول نموذج Django] (https://docs.djangoproject.com/en/3.1/ref/models/fields/). تأكد من قراءتها بعناية وتكوين نماذجك بالطريقة التي تريدها أن تتصرف بها.
 
-Now let's complete the model definition for all other fields that we need by also referring to the documentation. We will end up with the following definition that matches our ER-Diagram:
+الآن دعنا نكمل تعريف النموذج لجميع الحقول الأخرى التي نحتاجها من خلال الرجوع أيضًا إلى الوثائق. سننتهي مع التعريف التالي الذي يتوافق مع مخطط ER الخاص بنا:
 
 ```python
-from django.db import models
+من نماذج الاستيراد django.db
 
-class Post(models.Model):
-  title = models.CharField(max_length=200, unique=True)
-  slug = models.SlugField(max_length=200, unique=True)
-  body = models.TextField()
-  created_on = models.DateTimeField(auto_now_add=True)
-  updated_on = models.DateTimeField(auto_now=True)
-  status = models.IntegerField(default=0)
+فئة post (طرازات. نموذج):
+  العنوان = النماذج. CharField (max_length = 200 ، فريد = صحيح)
+  slug = النماذج. SlugField (max_length = 200 ، فريد = صحيح)
+  body = Models.TextField ()
+  created_on = نماذج.DateTimeField (auto_now_add = صحيح)
+  updated_on = Models.DateTimeField (auto_now = True)
+  status = Models.IntegerField (افتراضي = 0)
 ```
 
-Notice however the field status. We want to limit the values of status to either 0 if the post is a draft, or 1 if the post is published. So we create the choices and configure the field to use these choices only. This will prevent anyone from entering values other than 0 or 1 for status:
+لكن لاحظ حالة الحقل. نريد قصر قيم الحالة على 0 إذا كان المنشور عبارة عن مسودة ، أو 1 إذا تم نشر المنشور. لذلك نقوم بإنشاء الاختيارات وتكوين الحقل لاستخدام هذه الاختيارات فقط. سيمنع هذا أي شخص من إدخال قيم غير 0 أو 1 للحالة:
 
 ```python
-from django.db import models
+من نماذج الاستيراد django.db
 
- STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+ الحالة = (
+    (0، "مسودة")،
+    (1 ، "نشر")
   )
 
-class Post(models.Model):
-  title = models.CharField(max_length=200, unique=True)
-  slug = models.SlugField(max_length=200, unique=True)
-  body = models.TextField()
-  created_on = models.DateTimeField(auto_now_add=True)
-  updated_on = models.DateTimeField(auto_now=True)
-  status = models.IntegerField(choices=STATUS, default=0)
+فئة post (طرازات. نموذج):
+  العنوان = النماذج. CharField (max_length = 200 ، فريد = صحيح)
+  slug = النماذج. SlugField (max_length = 200 ، فريد = صحيح)
+  body = Models.TextField ()
+  created_on = نماذج.DateTimeField (auto_now_add = صحيح)
+  updated_on = Models.DateTimeField (auto_now = True)
+  status = Models.IntegerField (الاختيارات = STATUS ، افتراضي = 0)
 ```
 
-Finally, for the next step, we would like our model objects to display a useful message when we display them in the admin interface. Therefore, we must define a special function called **__str__**. We can set what is displayed when someone attempts to print an object of the Post model:
+خيرًا ، بالنسبة للخطوة التالية ، نود أن تعرض كائنات نموذجنا رسالة مفيدة عندما نعرضها في واجهة المسؤول. لذلك ، يجب علينا تحديد وظيفة خاصة تسمى ** __ str __ **. يمكننا تعيين ما يتم عرضه عندما يحاول شخص ما طباعة كائن من نموذج Post:
 
-```python
-from django.db import models
+فئة post (طرازات. نموذج):
+  العنوان = النماذج. CharField (max_length = 200 ، فريد = صحيح)
+  slug = النماذج. SlugField (max_length = 200 ، فريد = صحيح)
+  body = Models.TextField ()
+  created_on = نماذج.DateTimeField (auto_now_add = صحيح)
+  updated_on = Models.DateTimeField (auto_now = True)
+  status = Models.IntegerField (الاختيارات = STATUS ، افتراضي = 0)
 
- STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
+   def __str __ (ذاتي):
+    إرجاع العنوان الذاتي```python
+من نماذج الاستيراد django.db
+
+ الحالة = (
+    (0، "مسودة")،
+    (1 ، "نشر")
   )
 
-class Post(models.Model):
-  title = models.CharField(max_length=200, unique=True)
-  slug = models.SlugField(max_length=200, unique=True)
-  body = models.TextField()
-  created_on = models.DateTimeField(auto_now_add=True)
-  updated_on = models.DateTimeField(auto_now=True)
-  status = models.IntegerField(choices=STATUS, default=0)
 
-   def __str__(self):
-    return self.title
 ```
 
-With that our model is complete and we can move to the next step of configuring the Admin Interface to manage these models. For more information please refer to [Django's documentation on database models](https://docs.djangoproject.com/en/3.1/topics/db/models/).
+مع اكتمال نموذجنا ويمكننا الانتقال إلى الخطوة التالية لتكوين واجهة المسؤول لإدارة هذه النماذج. لمزيد من المعلومات ، يرجى الرجوع إلى [توثيق Django حول نماذج قاعدة البيانات] (https://docs.djangoproject.com/en/3.1/topics/db/models/).
