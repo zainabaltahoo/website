@@ -24,9 +24,7 @@ draft: False
 جانغو هو إطار عمل لتطوير موقع التطبيقات بما يعني هو مجموعة من القواعد والمكتبات والأعراف التي يمكن إستعمالها لتسهيل عملية بناء موقع تطبيقي. 
 جانغو هو إطار عملي ولهذا السبب يفرض جانغو عدد كبير من القيود والطرق للعمل على المشروع. هذه القيود تضمن الحصول على الفوائد التي يعدنا  بها جانغو كما يتضمن عمل جماعي متطور وآمن* ويقرأ المعلومات التي تشرح وتعطي معلومات من النموذج، وإعادة الاستخدام، وإلى آخره.
 
-Django is a web application development framework. Meaning, it is a set of rules, libraries, and conventions that you could use to streamline the process of building a web application.
 
-Given that Django is a framework, it enforces a number of restrictions and ways to do things on our proejct. These restrictions would guarantee that we can gain the benefits promised by Django including improved collaboration, security, admin interface, reusability ...etc.
 
 ## The Steps in the Development Process
 ## الخطوات في عملية التطوير 
@@ -44,21 +42,9 @@ F -->|Refine or Work on Next Feature|D
 F -->|Refine or Work on Next Subproject|B
 ```
 
-Another benefit to adhering to the Django way of doing things is that it makes the development process more predictable. If the functional and data requirements are already known, then the way in which development is done is as follows:
 
-```mermaid
-graph TD
-A[Setup Project] --> B[Start App for Subproject]
-B --> C[Define Data Models]
-C -->|Work on Single Feature| D[Create View Function] 
-D -->E[Wire URLs to View]
-E -->F[Create Templates]
-F -->|Refine or Work on Next Feature|D
-F -->|Refine or Work on Next Subproject|B
-```
 
-## The Steps
-### 1- Setup Project
+
 ## الخطوات
 ### 1- إعداد المشروع
 تتم خطوة إعداد المشروع مرة واحدة فقط في بداية المشروع. يقوم بإنشاء بنية دليل الكود المصدري لمشروع django. 
@@ -81,22 +67,11 @@ F -->|Refine or Work on Next Subproject|B
 يوصى بشدة بفتح خادم الويب في نافذة المتصفح الخاصة به. سيسمح لك ذلك بالتنقل بسهولة في تطبيق الويب الخاص بك عن طريق إدخال عناوين URL مختلفة لاختبار أجزاء مختلفة من التطبيق.
 
 
-The setup project step is done only once at the start of the project. It creates the source code directory structure for the django project. It is performed by creating a **Django Template** project in replit.com. When the project is created it will have the following structure:
+
 
 {{< figure src="courses/350/project-structure.png" caption="Project Structure" >}}
 
 
-1. **manage.py:** This is used to execute project commands, such as creating apps, running the django server, and creating a superuser.
-2. **urls.py:** This is the main file which describes what the paths the web application will contain. Typically, each path will point to a single feature.
-3. **settings.py:** This is where all the project configuration will reside. This will be need modification when starting the project for the first time.
-
-To confirm that your setup works on replit.com, click on the Run{{< icon name="play" pack="fas" >}} button up top, and you should see the following in your browser:
-
-{{< figure src="courses/350/run_django.png" caption="Running Django on Replit.com" >}}
-
-You are ready to start working on your Django project if you see this screen, and remember, the development Django server must be running for you to see your work. To stop the server, you need to click the Stop{{< icon name="stop" pack="fas" >}} button up top.
-
-It is highlly recommended that you open the webserver in it's own browser window. This would allow you to easily navigate your web application by entering different URLs to test different parts of the application.
 
 ### 2- Start App or Subproject
 
