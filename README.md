@@ -5,8 +5,12 @@
 - based on Hugo and wowchemy
 - Hosted with Netlify
 
+# Video Explanation of How To Participate
+
+[![](https://img.youtube.com/vi/ZGW_gwWeYDA/0.jpg)](https://youtu.be/ZGW_gwWeYDA)
 # Important Note
 
+- **Do not merge pull requests!**
 - Send your pull requests to `mis350/website-translation` repo.
 - The translation involves the files under `/content/en/courses/` and `/content/ar/courses/`. You can **IGNORE** all other files.
 - When in doubt, contant your instructor with questions.

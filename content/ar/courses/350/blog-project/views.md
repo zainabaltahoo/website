@@ -19,59 +19,59 @@ draft: False
 ---
 
 {{% callout note %}}
-Switch to branch **5-views** from **malmarz/isom350-blog** github repo to see this step's implementation
+انتقل إلى الفرع (branch) **5-views** من **malmarz/isom350-blog** github repo لمشاهدة تنفيذ هذه الخطوة
 {{% /callout %}}
 
 
-Views are functions that take the HTTP request from the webserver, process the request, then return an appropriate HTTP response. It is the function responsibile for handling the main tasks of our web application and are also responsibile for constructing the HTML page that will be returned to the client.
+المشاهدات (Views) هي وظائف تأخذ طلب HTTP من خادم الويب ، وتعالج الطلب ، ثم تعيد استجابة HTTP المناسبة.  إنها الوظيفة المسؤولة عن معالجة المهام الرئيسية لتطبيق الويب الخاص بنا ، كما أنها مسؤولة عن إنشاء صفحة HTML التي سيتم إرجاعها إلى العميل.
 
-In our [brief introduction to Django]({{< ref "dev-process#4--create-view-function" >}}), we gave an overview of the simplist form of view function and what they need to do. Django also provides other means by which we can create view functions to perform standard tasks with very minimal coding.
+في [مقدمة موجزة عن Django]({{< ref "dev-process#4--create-view-function" >}})، قدمنا ​​نظرة عامة على الشكل المبسط لوظيفة العرض (view) وما يتعين عليهم القيام به.  يوفر Django أيضًا وسائل أخرى يمكننا من خلالها إنشاء وظائف عرض لأداء المهام القياسية بأدنى حد من كتابه الترميز (code).
 
-One of the main functions in a CRUD based web application, such as the blog project we are working on, is its ability to display:
+تتمثل إحدى الوظائف الرئيسية في تطبيق الويب المستند إلى CRUD ، مثل مشروع المدونة الذي نعمل عليه ، في قدرته على عرض:
 
-1. The details of a single item stored in our database
-2. A listed (of filtered list) of items stored in our database.
+ 1. تفاصيل عنصر واحد مخزنة في قاعدة البيانات الخاصة بنا
+ 2. قائمة (من القائمة المصفاة) بالعناصر المخزنة في قاعدة البيانات الخاصة بنا.
 
-In our case, the item in our database is the blog post. We want the means by which we can display the details of a single blog post and also a list of available blog posts. This is almost a universal requirement in all web applications. Django recognizes this and has made creating view functions for list and detailed object views very easy. It provides ready made views to perform standard functions called generic views. To use them, you take advantage of the OOP design of Django and extend the required view to your specific needs, exactly like what we did with the models and the improved admin interface.
+في حالتنا ، العنصر الموجود في قاعدة البيانات الخاصة بنا هو منشور المدونة.  نريد الوسائل التي يمكننا من خلالها عرض تفاصيل منشور مدونة واحد وأيضًا قائمة منشورات المدونة المتاحة.  يكاد يكون هذا مطلبًا عالميًا في جميع تطبيقات الويب.  يدرك Django هذا الأمر ، وقد جعل إنشاء وظائف عرض لقائمة وجهات نظر تفصيلية للكائنات (Object) أمرًا سهلاً للغاية.  يوفر طرق عرض (views) جاهزة لأداء وظائف قياسية تسمى طرق العرض العامة (generic views).  لاستخدامها ، يمكنك الاستفادة من تصميم OOP لـ Django وتوسيع العرض المطلوب لاحتياجاتك الخاصة ، تمامًا مثل ما فعلناه مع النماذج وواجهة الإدارة المحسّنة.
 
-Let's create a view to view a single post. To do that, we need to extend the [DetailedView generic view](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#detailview). We just specify the model we want to display its details and specify the template we want Django to use to present the data. This is how it is done in views.py:
+لنقم بإنشاء طريقة عرض لعرض منشور واحد.  للقيام بذلك ، نحتاج إلى توسيع [العرض المفصل العام] (https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#detailview).  نقوم فقط بتحديد النموذج الذي نريد عرض تفاصيله وتحديد القالب الذي نريد أن يستخدمه Django لتقديم البيانات.  هذه هي الطريقة التي يتم بها ذلك في views.py:
 
 ```python
-# First we import generic views
+# أولاً نقوم باستيراد العروضات العامة (generic views)
 from django.views import generic
-# We import also our Post model
+# نستورد أيضًا نموذج المنشور الخاص بنا
 from .models import Post
 
-# Now we extend the DetailedView to create our fiew function
+# نقوم الآن بتوسيع العرض التفصيلي لإنشاء وظيفة العرض الخاصة بك
 class PostDetailView(generic.DetailView):
-  model = Post  # We want to display posts
-  template_name = 'post_detail.html' # More about templates later
+  model = Post  # نريد أن نعرض المنشورات
+  template_name = 'post_detail.html' # المزيد حول القوالب لاحقًا
 
 ```
 
-And we are done!. For the detailed view, the user of the website must specify a Post that they would like to view and Django will serve a page containing the details of that post. In web applications, the required post is specified in the path part of the url. We will later design our application to fetch a post either based on its ID or its Slug. So if the user requests `/post/1/`, Django would serve the details of the first post. Similarly for `/post/2/` or `/post/3/`. More on that when we cover URLs.
+وانتهينا !.  للحصول على العرض التفصيلي ، يجب على مستخدم الموقع تحديد المنشور الذي يرغبون في عرضه وسيقوم Django بعرض صفحة تحتوي على تفاصيل ذلك المنشور.  في تطبيقات الويب ، يتم تحديد المنشور المطلوب في جزء المسار من عنوان url.  سنقوم لاحقًا بتصميم تطبيقنا لجلب منشور إما بناءً على معرفه (ID) أو Slug الخاص به. لذلك إذا طلب المستخدم `/post/1/`, سيخدم Django تفاصيل المنشور الأول. بالمثل ل `/post/2/` أو `/post/3/`. سنتكلم المزيد عن ذلك عندما نغطي URLs.
 
-Let's prepare the view function for displaying the list of posts. For that, we extend the [ListView generic](https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#listview) function in views.py as follows:
+دعنا نجهز وظيفة العرض لعرض قائمة المنشورات.  لذلك ، قمنا بتوسيع وظيفة [ListView generic] (https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#listview) في views.py على النحو التالي:
 
 ```python
-# We create our view by extending ListView
+# نقوم بإنشاء العرض (view) من خلال توسيع ListView
 class PostListView(generic.ListView):  
-  # the "QuerySet" used to fetch the list of posts
+  # ال"QuerySet" تستخدم لجلب قائمة المنشورات
   queryset = Post.objects.filter(status=1).order_by('-created_on')
-  # more about templates later
+  # المزيد حول القوالب لاحقًا
   template_name = 'post_list.html'
 ```
 
-The only difference between using ListView and DetailedView is that in DetailedView we specified a model, and the view will fetch a single object from that model type. With ListView, we specify a QuerySet. A QuerySet in Django is like a select statement in SQL, it is used to fetch a group or list of object that match a specific criteria. Here, the QuerySet to used to fetch Post objects, that have status = 1 (i.e., published posts), and they must be ordered newered first. Then the template tells Django how to show them.
+يتمثل الاختلاف الوحيد بين استخدام ListView و DetailedView في أنه في DetailedView قمنا بتحديد نموذج ، وسوف يجلب العرض كائنًا واحدًا من هذا النوع من النماذج.  باستخدام ListView ، نحدد QuerySet.  يشبه QuerySet في Django جملة التحديد في SQL ، حيث يتم استخدامه لجلب مجموعة أو قائمة من العناصر التي تطابق معايير معينة.  هنا ، يتم استخدام QuerySet لجلب كائنات Post ، التي لها الحالة = 1 (أي المشاركات المنشورة) ، ويجب أن يتم ترتيبها أولاً بأحدث.  ثم يخبر القالب Django بكيفية إظهارها.
 
-QuerySets is one of the most important features of Django and complement Django database models. It allows us to control what data is fetched from the database. For more information on how to work with database objects and QuerySets, please refer to [Django's documentation on QuerySets](https://docs.djangoproject.com/en/3.1/topics/db/queries/).
+QuerySets هي واحدة من أهم ميزات Django وتكمل نماذج قاعدة بيانات Django.  يسمح لنا بالتحكم في البيانات التي يتم جلبها من قاعدة البيانات.  لمزيد من المعلومات حول كيفية العمل مع كائنات قاعدة البيانات ومجموعات QuerySets ، يرجى الرجوع إلى [توثيق Django على QuerySets] (https://docs.djangoproject.com/en/3.1/topics/db/queries/).
 
-Once you are done, the view.py file will look like this:
+بمجرد الانتهاء ، سيبدو ملف view.py كما يلي:
 ```python
 from django.views import generic
 from .models import Post
 
-# Create your views here.
+# قم بانشاء العرض (views) هنا
 class PostListView(generic.ListView):
   queryset = Post.objects.filter(status=1).order_by('-created_on')
   template_name = 'post_list.html'
@@ -81,6 +81,6 @@ class PostDetailView(generic.DetailView):
   template_name = 'post_detail.html'
 ```
 
-Now the view function is created, but it is not yet exposed to our users. They cannot access it from their browsers. For that, we must wire the view function to the website URL and assign it a path as we shall do in the next step. 
+الآن تم إنشاء وظيفة العرض ، لكنها لم تعرض بعد لمستخدمينا.  لا يمكنهم الوصول إليه من المستعرضات الخاصة بهم.  لذلك ، يجب علينا توصيل وظيفة العرض بعنوان URL لموقع الويب وتعيين مسار لها كما سنفعل في الخطوة التالية.
 
-For more information on useing [Django's generic view please refer to Django's documentation](https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-display/).
+ لمزيد من المعلومات حول استخدام [عرض Django العام ، يرجى الرجوع إلى وثائق Django] (https://docs.djangoproject.com/en/3.1/topics/class-based-views/generic-display/).
