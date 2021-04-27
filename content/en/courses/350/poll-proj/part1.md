@@ -3,7 +3,7 @@
 title: The Poll Project 1st Assignment
 
 # Title for the menu link if you wish to use a shorter link title, otherwise remove this option.
-linktitle: 1st Assignment
+linktitle: Part 1
 
 # Date page published
 date: 2021-04-25T11:12:25Z
