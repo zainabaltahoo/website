@@ -165,8 +165,8 @@ class Author(models.Model):
     country = models.CharField(max_length=100)
 
 class Book(models.Model):
-    artist = models.ForeignKey(
-      Musician, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+      Author, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     release_date = models.DateField()
     num_stars = models.IntegerField()
