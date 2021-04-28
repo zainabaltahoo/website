@@ -29,7 +29,7 @@ summary: Second programming course for MIS majors utilizing Python to build data
 # Date page published #تاريخ نشر الصفحة 
 
 date: 2021-03-23
-تاريخ :23-03-2021 
+ 
 
 # Academic page type (do not modify).
 #(لا تقم بالتعديل)نوع صفحة الاكاديمية
@@ -41,10 +41,8 @@ type: book
  موقع هذه الصفحة في القائمة . ازالة هذا الخيار للفرز  الابجدي
 
 weight: 9
-الوزن :9
 
 draft: True
-مسودة : صح
 
 
 
