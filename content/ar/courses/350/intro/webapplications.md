@@ -34,7 +34,7 @@ draft: False
 
 ## Web Application History
 
-Web application have evolved over the years to take different forms. This brief history and will clarify what the difference is between a **Web Page** and a **Web Application**.
+تطورت تطبيقات الويب على مر السنين لتأخذ أشكالًا مختلفة. هذا التاريخ المختصر وسيوضح الفرق بين صفحة الويب و تطبيق الويب.
 
 ### Web Page
 
