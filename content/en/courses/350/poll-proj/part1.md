@@ -74,4 +74,8 @@ erDiagram
     }
 ```
 
+## How to Start and Submit Your Project
 
+1. Join the [poll-project assignment on github classroom](https://classroom.github.com/a/gJ3IhL4C).
+2. Import your assignment repository to replit.com and create a branch named `part1` which will hold the current part of the assignment
+3. When done, commit and push your work to GitHub. You can continue to make changes and push code after submission.
