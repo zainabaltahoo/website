@@ -23,9 +23,9 @@ Switch to branch **5-views** from **malmarz/isom350-blog** github repo to see th
 {{% /callout %}}
 
 
-Views are functions that take the HTTP request from the webserver, process the request, then return an appropriate HTTP response. It is the function responsibile for handling the main tasks of our web application and are also responsibile for constructing the HTML page that will be returned to the client.
+Views are functions that take the HTTP request from the webserver, process the request, then return an appropriate HTTP response. It is the function responsible for handling the main tasks of our web application and are also responsible for constructing the HTML page that will be returned to the client.
 
-In our [brief introduction to Django]({{< ref "dev-process#4--create-view-function" >}}), we gave an overview of the simplist form of view function and what they need to do. Django also provides other means by which we can create view functions to perform standard tasks with very minimal coding.
+In our [brief introduction to Django]({{< ref "dev-process#4--create-view-function" >}}), we gave an overview of the simplest form of view function and what they need to do. Django also provides other means by which we can create view functions to perform standard tasks with very minimal coding.
 
 One of the main functions in a CRUD based web application, such as the blog project we are working on, is its ability to display:
 
@@ -62,7 +62,7 @@ class PostListView(generic.ListView):
   template_name = 'post_list.html'
 ```
 
-The only difference between using ListView and DetailedView is that in DetailedView we specified a model, and the view will fetch a single object from that model type. With ListView, we specify a QuerySet. A QuerySet in Django is like a select statement in SQL, it is used to fetch a group or list of object that match a specific criteria. Here, the QuerySet to used to fetch Post objects, that have status = 1 (i.e., published posts), and they must be ordered newered first. Then the template tells Django how to show them.
+The only difference between using ListView and DetailedView is that in DetailedView we specified a model, and the view will fetch a single object from that model type. With ListView, we specify a QuerySet. A QuerySet in Django is like a select statement in SQL, it is used to fetch a group or list of object that match a specific criteria. Here, the QuerySet to used to fetch Post objects, that have status = 1 (i.e., published posts), and they must be ordered newer first. Then the template tells Django how to show them.
 
 QuerySets is one of the most important features of Django and complement Django database models. It allows us to control what data is fetched from the database. For more information on how to work with database objects and QuerySets, please refer to [Django's documentation on QuerySets](https://docs.djangoproject.com/en/3.1/topics/db/queries/).
 
