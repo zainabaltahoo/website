@@ -152,7 +152,7 @@ class Order(models.Model):
 ## LineItem Model
 
 ```python
-class Order(models.Model):
+class LineItem(models.Model):
     quantity = models.IntegerField(default=0)
     product_name = models.CharField(max_length=100)
     unit_price = models.FloatField(default=0)
