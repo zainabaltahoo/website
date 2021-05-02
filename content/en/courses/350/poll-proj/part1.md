@@ -22,9 +22,9 @@ draft: False
 Due Date is <strong>Sunday May 9th before 1st lab</strong>
 {{% /callout %}}
 
-## Requirements for This Assignments
+## Requirements for This Assignments 
 
-- [ ] Setup a new projects for the assignment
+- [ ] Setup a new projects for the assignment 
 - [ ] Setup a poll app in your project
 - [ ] Create the models for this project based on the ER-Diagram shown below
 - [ ] Perform migrations and prepare the database
