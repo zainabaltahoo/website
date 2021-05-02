@@ -251,16 +251,7 @@ Can you tell what is missing to complete this web app?
 
 ---
 
-## Missing Parts
+## The Missing Parts
 
 1. Creating a url path for each view
 2. Providing the templates
-
----
-
-- We will provide quick solutions to test the application
-- More details on URLs, templates, and querysets
-
----
-
-## The Quick URL Solution
