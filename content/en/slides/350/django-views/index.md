@@ -178,80 +178,42 @@ def test_view(request):
 
 ---
 
+## FStrings Can Make HTML Dynamic
+
+```python
+from django.http import HttpResponse
+
+def test_view(request):
+  
+  name = "ISOM 350 Student"
+
+  return HttpResponse(f"""<html><body>
+  <h1>Hello {name}!</h1>
+  <p>This is my first <strong>html</strong> web app!</p>
+  </body></html>""")
+```
+
+---
+
+### User input will be a future topic
+
+See forms
+
+
+---
+
 ### Of course, we will not be writing HTML using Python Strings.
 
 This is where Django Templates are most useful
 
 ---
 
-## Django simplification of CRUD Views
+### Quick Summary
 
-- Most functions ina data-driven web app as CRUD operations
-- We can reuse some ready made generic Django views for CRUD operations
-  - We just have to configure them
-- Alternatively, we can write the whole view function
-  
----
+To create a fully functional web page in Django you need:
 
-## The Read Operation
+1. Create a view function to service this page
+2. Create a path for the function in urls.py
+3. Prepare the template for the page
 
-Such operations are used to retrieve data from the database, then display it as:
-1. A list
-2. A single object
-
----
-
-## For Single Objects
-
-1. Subclass `DetailView` from `django.views.generic`
-2. Define the `model` to use 
-3. Define the `template_name`
-
----
-
-## For Single Objects
-
-
-```python
-from django.views import generic
-from .models import Post
-
-
-class PostDetailView(generic.DetailView):
-  model = Post
-  template_name = 'post_detail.html'
-```
-
-
----
-
-## For List Views
-
-1. Subclass `ListView` from `django.views.generic`
-2. Define what list to show using `queryset` 
-3. Define the `template_name`
-
----
-
-## The List View
-
-```python
-from django.views import generic
-from .models import Post
-
-
-class PostListView(generic.ListView):
-  queryset = Post.objects.filter(status=1).order_by('-created_on')
-  template_name = 'post_list.html'
-```
-
----
-
-Can you tell what is missing to complete this web app?
-
----
-
-## The Missing Parts
-
-1. Creating a url path for each view
-2. Providing the templates
+Don't forget the models if database will be used
