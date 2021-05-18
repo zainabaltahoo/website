@@ -48,15 +48,36 @@ Django View Functions
 
 ---
 
-## Django MVT Webapp Model
+## Reminder of Django's MVT Model
 
-When constructing webapps, we build:
+Main components in a Django web application are:
 
 1. **Models:** To handle data
 2. **Views:** To handle business logic
 3. **Templates:** To handle how screens will look
 
-We continue to work on models, views, and templates as we build a webapp
+This organization enables team collaboration and specialization 
+
+---
+
+## Django Application Views
+
+- A view refers to the webpage in a web application that implements a functionality
+  - For example, login, cart, payment, catalog, and blog list screens.
+- A view function is that function that is used to constructs the view in response to the browser requesting it
+- It brings together the data performs the actions necessary to construct the page to be sne to the browser
+
+---
+
+## Building A View
+
+The required tasks to build a view are:
+
+1. Create the view function in your app's views.py
+2. Link the view function to a path in root urls.py
+3. (Optional) Prepare the template that has the design of the page
+
+Data handling is done as part of creating the view function.
 
 ---
 
@@ -208,7 +229,7 @@ This is where Django Templates are most useful
 
 ---
 
-### Quick Summary
+### Summary
 
 To create a fully functional web page in Django you need:
 
@@ -216,4 +237,4 @@ To create a fully functional web page in Django you need:
 2. Create a path for the function in urls.py
 3. Prepare the template for the page
 
-Don't forget the models if database will be used
+Models will be used only if databases are needed and will be accessed from the view function.

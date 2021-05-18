@@ -54,7 +54,7 @@ Data-Driven Views
 2. Link the view function to a url path in urls.py
 3. Prepare the template for the page
 
-It is the same for data driven-views, we just use Django models to fetch/store data
+It is the same for data driven-views, we just use Django models to fetch/store data in our view function
 
 ---
 

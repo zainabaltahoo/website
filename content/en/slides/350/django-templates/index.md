@@ -149,7 +149,20 @@ For example:
 ```html
 <h1>heading 1</h1>
 ```
-Some tags can contain other tags:
+Tags can contain other tags:
+
+```html
+<div>
+  <p>
+  This is a paragraph inside a div
+  </p>
+</div>
+```
+
+---
+
+- Some tags require specific tags inside them
+- Like LI inside UL or OL tags:
 ```html
 <ul>
   <li>item 1</li>
@@ -166,6 +179,7 @@ Some tags can contain other tags:
 - DIV for page sections, used to create structure
   - Example: Menu, header, footer, content ..etc
 - P for paragraphs, used to divide textual content
+- OL/UL for ordered/unordered lists and TABLE
 - BR for line breaks, no closing tag, written as:
 
 ```html
@@ -186,42 +200,6 @@ Some tags can contain other tags:
 
 ---
 
-## More Useful HTML Tags
-
-- TABLE, which includes:
-  - TR for each row including header, it includes either
-    - TH for a header cell
-    - TD for a data cell
-    - Choice of TH or TD is mainly for formatting
-
----
-
-## Table Example
-
-```html
-<TABLE>
-  <TR>
-    <TH>Column 1</TH>
-    <TH>Column 2</TH>
-  </TR>
-  <TR>
-    <TH>row 1 item 1 (header)</TH>
-    <TD>row 1 item 2</TD>
-  </TR>
-  <TR>
-    <TD>row 2 item 1</TD>
-    <TD>row 2 item 2</TD>
-  </TR>
-</TABLE>
-```
-
----
-
-## Table Output
-
-{{< figure src="django-template-table.png" >}}
-
----
 
 ## Ordered and Unordered lists
 
@@ -256,6 +234,45 @@ Some tags can contain other tags:
 
 
 ---
+
+## HTML Table
+
+- TABLE, must include:
+  - TR for each row including, it includes either
+    - Then place data for each column in a TH or TD tag:
+      - TH to format data as a header cell
+      - TD to format data as a data cell
+    - Choice of TH or TD is mainly for formatting
+
+---
+
+## Table Example
+
+```html
+<TABLE>
+  <TR>
+    <TH>Column 1</TH>
+    <TH>Column 2</TH>
+  </TR>
+  <TR>
+    <TH>row 1 item 1 (header)</TH>
+    <TD>row 1 item 2</TD>
+  </TR>
+  <TR>
+    <TD>row 2 item 1</TD>
+    <TD>row 2 item 2</TD>
+  </TR>
+</TABLE>
+```
+
+---
+
+## Table Output
+
+{{< figure src="django-template-table.png" >}}
+
+---
+
 
 ## FORM Tag
 
