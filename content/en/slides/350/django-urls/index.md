@@ -86,10 +86,10 @@ Remember to import the view functions!
 - Place them in the urlpatterns list
 - Example dynamic paths:
 ```python
+path('profile/<str:name>/', user_profile),
 path('blog/post/<slug:slug>/', view_post_by_slug),
 path('blog/post/<int:id>/', view_post_by_id),
 path('blog/post/<int:year>/<int:month>/', view_posts_in_month),
-path('profile/<str:name>/', user_profile),
 ```
 
 ---
