@@ -551,3 +551,5 @@ Change it to make the title only clickable
 {{< figure src="django-ddv-result3.png" >}}
 
 Now you don't have to remember post slugs as they are now clickable
+
+
