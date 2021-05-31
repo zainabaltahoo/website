@@ -5,7 +5,7 @@ authors: []
 tags: [isom350]
 categories: []
 date: "2021-05-24T05:06:22Z"
-draft: true
+draft: false
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon
@@ -96,7 +96,7 @@ erDiagram
 ### Updated Models.py
 
 ```python
-class Comment(models.model):
+class Comment(models.Model):
   comment = models.TextField()
   author = models.CharField(max_length=100, blank=True, null=True)
   email = models.EmailField(blank=True, null=True)
@@ -120,4 +120,111 @@ class Comment(models.model):
 
 ---
 
-{{< figure src="django-ddv-result2.png" >}}
+## From Comment to Poll
+
+- The Many to One direction
+- Just reference the relationship field:
+
+```python
+comment = Comment.objects.get(pk=id)
+poll = comment.poll
+```
+- The poll field will give you a Poll object
+
+---
+
+### From Poll to Comment
+
+- The One to Many direction
+- Use reverse relationships
+- For every relationship Django makes available a field in the related model to allow moving in the other direction
+
+--- 
+
+### From Poll to Comment
+
+- For ForeignKey the reverse relationship gets the name model_set, for example comment_set in the current example
+- It's just a model manager like objects, you can use all() and filter() on it
+- Everything you learned about fetching objects using all and filter applies here as well
+  
+---
+
+```python
+poll = Poll.objects.get(pk=pid)
+comments = poll.comment_set.all()
+```
+- comments will include only the comments that belong to the poll object in this example
+- comments will be a list of objects
+  
+---
+
+### The Reverse Relation Model Manager
+
+- Everything you learned about the objects model manager applies
+  - You can use all, filter, and get
+  - also update, create, and delete (yet to be covered)
+  - Applies to ForeignKeyFiel, ManyToManyField, and OneToOneField, but slightly different
+  - Read the [documentation on model fields](https://docs.djangoproject.com/en/3.2/ref/models/fields/)
+
+---
+
+### Modifying The Reverse Relationship Name
+
+- The attribute name by default is modelname_set
+- Can be changed using the related_name option in Comment mode in models.py
+```python
+  post = models.ForeignKey('Post', 
+    on_delete=models.CASCADE, 
+    related_name="comments") 
+```  
+- Will replace `poll.comment_set` with `poll.comments`
+
+---
+
+### Remember
+
+- When traversing relationships, you are just fetching related data.
+- Everything else about the view is just the same
+
+---
+
+### Updated Blog views.py
+
+```python
+def detailed_post_view(request, slug):
+  data = {}
+  post = Post.objects.get(slug=slug)
+  data["post"] = post
+  data["comments"] = post.comment_set.all()
+  return render(request, "detailed_post.html", context=data)
+```
+
+---
+
+### detailed_post.html Template
+
+```html
+ <h1>{{ post.title}}</h1>
+  <ul>
+    <li>Posted on: {{ post.created_on }} </li>
+    <li>Last updated: {{ post.updated_on }} </li>
+  </ul>
+  <p>
+    {{ post.body }}
+  </p>
+  <h2>comments:</h2>
+  <ul>
+  {% for c in comments %}
+    <li>{{ c.author }}: {{ c.comment }}</li>
+  {% endfor %}
+  </ul>
+```
+
+---
+
+### The Result
+
+
+{{< figure src="django-relationships.png" >}}
+
+Do not forget to wire the urls

@@ -417,6 +417,24 @@ posts = Post.objects.filter(created_on__date__gt=date_before)
   - Django will ignore the time
 - As with lt and lte, gt is exclusive, while gtw is inclusive of the query date.
 
+
+---
+
+## Check If Date/Time Has Passed
+
+
+```python
+import datetime
+posts = Post.objects.filter(
+  created_on__date__gt=datetime.datetime.now()
+  )
+```
+- Use `datetime.datetime.now()`  or `datetime.date.today()`
+- If date/time is 
+  - gt now/today, then it's in the future
+  - lt now/today, then it's in the past
+  
+
 ---
 
 ## Between Dates/Times Lookup
@@ -462,6 +480,23 @@ posts = Post.objects.filter(
     - Post.DoesNotExist if object was not found
     - Post.MultipleObjectsReturned if multiple objects return (not unique)
 - Typically use for primary key lookup
+
+---
+
+### Shortcut for Using Get
+
+- Django provides the shortcut function `get_object_or_404` that doesn't through an error, but displays the 404 page instead
+- 404 error means the page is not found
+- Most common use case
+```python
+from django.shortcuts import get_object_or_404
+from .models import Post
+
+def my_view(request, pid):
+  context = {
+    post = get_object_or_404(Post, pk=pid)
+  }
+```
 
 ---
 
