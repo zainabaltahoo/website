@@ -463,6 +463,76 @@ posts = Post.objects.filter(
 
 ---
 
+## Filtering and Searching The List
+
+- To add a search or filter feature to the list the following is needed
+  1. A urlpatterns that accepts a query
+  2. A view function that uses the query to filter the list
+  3. Everything else remains the same
+
+---
+
+
+## Search/Filter Updated blog/urls.py
+
+1. A urlpatterns that accepts a query:
+   
+```python
+from . import views 
+from django.urls import path
+
+urlpatterns = [
+    path('', views.list_posts),
+    path('search/body/<str:q>/', views.search_posts),
+]
+```
+  - Notice how the path has meaning
+---
+
+## Search/Filter Updated blog/views.py
+2. A view function that uses the query to filter the list, Just add the following view function:
+```python
+def search_posts(request, q):
+  posts = Post.objects.filter(body__icontains=q)
+  context = {
+    'post_list': posts,
+  }
+  return render(request, "post_list.html", context)
+```
+
+---
+
+## Compare search_posts to list_posts
+
+```python
+def list_posts(request):
+  posts = Post.objects.all()
+  context = {
+    'post_list': posts,
+  }
+  return render(request, "post_list.html", context)
+```
+---
+
+## The Search View is Complete
+
+- Included q argument for the query to search view function
+- Used filter to get posts that match query
+  - Here we searched the body
+- Reused the same template post_list.html
+- That's it!
+- Can you do a search/filter for titles? or created_on dates?
+
+---
+
+## Complex Lookups
+
+- If you want to use complex lookup conditions
+- For example, a query that matches the body OR the title
+- Read the documentation on [Django Complex Queries](https://docs.djangoproject.com/en/3.2/topics/db/queries/#complex-lookups-with-q-objects)
+
+---
+
 ### Other interesting Lookups to Investigate
 
 - in
@@ -513,8 +583,8 @@ def show_post(request, id):
   return render(request, "post_detail.html", context)
 ```
 
-We will get the id from the URL path, so we include it as a view function argument.
-
+- We will get the id from the URL path, so we include it as a view function argument.
+- Can you use get_object_or_404 instead?
 ---
 
 ### Updating blog/urls.py
@@ -524,11 +594,12 @@ List of urlpatterns should look like this:
 ```python
   urlpatterns = [
     path('', views.list_posts),
+    path('search/body/<str:q>/', views.search_posts),
     path('<slug:id>/', views.show_post),
   ]
 ```
 
-For show_post, Django take whatever slug is in the url and pass it as the id argument
+For show_post, Django take whatever slug is in the url and pass it as the id argument to the show_post view function
 
 ---
 
