@@ -178,7 +178,7 @@ comments = poll.comment_set.all()
     related_name="comments") 
 ```  
 - Will replace `poll.comment_set` with `poll.comments`
-
+- Useful for ManyToMany or multiple relationships of the same type
 ---
 
 ### Remember
@@ -198,6 +198,7 @@ def detailed_post_view(request, slug):
   data["comments"] = post.comment_set.all()
   return render(request, "detailed_post.html", context=data)
 ```
+- What if you wanted to filter comments to exclude ones without a name?
 
 ---
 
