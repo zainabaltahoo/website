@@ -100,6 +100,7 @@ class Comment(models.Model):
   comment = models.TextField()
   author = models.CharField(max_length=100, blank=True, null=True)
   email = models.EmailField(blank=True, null=True)
+  created_on = models.DateTimeField(auto_now_add=True)
   post = models.ForeignKey('Post', on_delete=models.CASCADE) 
 ```
 
@@ -120,20 +121,20 @@ class Comment(models.Model):
 
 ---
 
-## From Comment to Poll
+## From Comment to Post
 
 - The Many to One direction
 - Just reference the relationship field:
 
 ```python
 comment = Comment.objects.get(pk=id)
-poll = comment.poll
+post = comment.post
 ```
-- The poll field will give you a Poll object
+- The post field will give you a Post object
 
 ---
 
-### From Poll to Comment
+### From Post to Comment
 
 - The One to Many direction
 - Use reverse relationships
@@ -141,7 +142,7 @@ poll = comment.poll
 
 --- 
 
-### From Poll to Comment
+### From Post to Comment
 
 - For ForeignKey the reverse relationship gets the name model_set, for example comment_set in the current example
 - It's just a model manager like objects, you can use all() and filter() on it
@@ -150,10 +151,10 @@ poll = comment.poll
 ---
 
 ```python
-poll = Poll.objects.get(pk=pid)
-comments = poll.comment_set.all()
+post = Post.objects.get(pk=pid)
+comments = post.comment_set.all()
 ```
-- comments will include only the comments that belong to the poll object in this example
+- comments will include only the comments that belong to the post object in this example
 - comments will be a list of objects
   
 ---
@@ -163,7 +164,7 @@ comments = poll.comment_set.all()
 - Everything you learned about the objects model manager applies
   - You can use all, filter, and get
   - also update, create, and delete (yet to be covered)
-  - Applies to ForeignKeyFiel, ManyToManyField, and OneToOneField, but slightly different
+  - Applies to ForeignKeyField, ManyToManyField, and OneToOneField, but slightly different
   - Read the [documentation on model fields](https://docs.djangoproject.com/en/3.2/ref/models/fields/)
 
 ---
@@ -177,7 +178,7 @@ comments = poll.comment_set.all()
     on_delete=models.CASCADE, 
     related_name="comments") 
 ```  
-- Will replace `poll.comment_set` with `poll.comments`
+- Will replace `post.comment_set` with `post.comments`
 - Useful for ManyToMany or multiple relationships of the same type
 ---
 
