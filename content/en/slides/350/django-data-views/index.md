@@ -580,7 +580,7 @@ def show_post(request, id):
 from django.shortcuts import get_object_or_404
 from .models import Post
 
-def my_view(request, pid):
+def show_post(request, pid):
   context = {
     post = get_object_or_404(Post, pk=pid)
   }
