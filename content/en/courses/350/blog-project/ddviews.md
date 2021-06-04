@@ -199,32 +199,27 @@ Student.objects.filter(academic_year__gte=3)
 ```
 
 
----
+### Specific Queries on Date/Time Field
 
-## Date/Time Lookups
+To perform exact lookup you can use any of the following lookup function or a combination of them:
 
-- The typical date/time lookup methods can be classified into either:
-  - Exact date/time lookup
-  - Range lookup
+| \_\_year   | Specify the lookup year   |
+| ---------- | ------------------------- |
+| \_\_month  | Specify the lookup month  |
+| \_\_day    | Specify the lookup day    |
+| \_\_hour   | Specify the lookup hour   |
+| \_\_minute | Specify the lookup minute |
+| \_\_second | Specify the lookup second |
 
----
+Example Usage:
 
-## Exact Date/Time Lookups
 
-- Using any combination of __year, __month, __day, __hour, __minute, and __second lookup to get a specific date
-- For example...
-
----
-
-### For posts created in the year 2020
+- To fetch posts created in the year 2020
 ```python
 Post.objects.filter(create_on__year=2020)
 ```
-
----
-
-
-### For posts in January 2020:
+- To fetch posts created in January 2020:
+  
 ```python
 Post.objects.filter(
   create_on__year=2020,
@@ -232,10 +227,7 @@ Post.objects.filter(
   )
 ```
 
----
-
-
-### For posts in 23rd of January 2020:
+- To fetch posts created in 23rd of January 2020:
 ```python
 Post.objects.filter(
   create_on__year=2020,
@@ -244,255 +236,122 @@ Post.objects.filter(
   )
 ```
 
----
-
-## Exact Date/Time Loockups
-
-- How can you lookup posts created:
-  - on the1st of every month?
-  - at 2am (any date)
-  - at 5pm on March 2nd (regardless of the year)
-  - at 5pm on March 2nd in 2019 
-
----
-
-## Range Lookup for Date/Time
-
-- Ranged lookups can have 3 forms:
-  1. Filter all dates BEFORE (Less than) a specific date/time 
-  2. Filter all dates AFTER (Greater than) a specific date/time
-  3. Filter all dates BETWEEN two dates/times
-
----
-
-## Range Lookup for Date/Time
-
-For all three cases you need to do the following:
-
-1. Import datetime python library
-2. The lookup dates/times must be either:
-   - datetime.date object (for dates only)
-   - datetime.datetime object (for date and time)
-3. Use the date and datetime objects as the value to lookup
-4. For datetime fields, use __date after field name to perform a date only lookup
-
----
-
-## Filter Before a Date/Time Example
-
+- To fetch posts created in January, regardless of year or day :
 ```python
-import datetime
-date_before = datetime.datetime(2019, 5, 3, 0, 0, 0)
-posts = Post.objects.filter(created_on__lt=date_before)
-```
-
-- Can you tell the difference between using lt and lte here?
-- What is the 0,0,0 part? (it's optional btw)
-- What is the default time if we exclude it?
-
----
-
-## Filter After a Date/Time Example
-
-```python
-import datetime
-date_before = datetime.date(2019, 5, 3)
-posts = Post.objects.filter(created_on__date__gt=date_before)
-```
-
-- Notice we are doing date comparison only here, see the __date after created_on
-  - Django will ignore the time
-- As with lt and lte, gt is exclusive, while gtw is inclusive of the query date.
-
-
----
-
-## Check If Date/Time Has Passed
-
-
-```python
-import datetime
-posts = Post.objects.filter(
-  created_on__date__gt=datetime.datetime.now()
+Post.objects.filter(
+  create_on__month=1,
   )
 ```
-- Use `datetime.datetime.now()`  or `datetime.date.today()`
-- If date/time is 
-  - gt now/today, then it's in the future
-  - lt now/today, then it's in the past
-  
 
----
+- To fetch posts created in at 2am, regardless of date:
+```python
+Post.objects.filter(
+  create_on__hour=2,
+  )
+```
 
-## Between Dates/Times Lookup
+- Django uses 24 hour format, so to fetch posts created in at 2pm, regardless of date:
+```python
+Post.objects.filter(
+  create_on__hour=14,
+  )
+```
 
-- Same rules apply as with before and after lookup
-- Use __range instead of __lt or __gt 
-- Passed value must be a tuple containing the range dates/times
-- The range is inclusive (like __lte and __gte)
+### Range Queries on Date/Time Field
 
----
+To specify ranges, whether its dates/times before/after a specific point in time or dates/times within a specific range, we must use python datetime library to represent dates/times. This would ensure that the date/time is represented correctly and in a standard format and leaves no room for doubt as to what date is being referenced. So example, some countries would put the month before the day, while others would put the day. Some programmers might use 2 digits for the year while other would use 4. Python datetime library would force a specific format and allow for additional [useful operation like datetime arithmetic](https://docs.python.org/3/library/datetime.html).
 
-## Between Dates/Times Lookup Example
+Once dates/times are represented using Date/DateTime objects, we can easily find older dates using comparisons such as `>` or `<`. Older dates will always be smaller `<` more recent date. Therefore to find objects that come before a specific point in time, we use the `__lt` lookup to compare against that point. for example, to find all posts created before May 3rd, 2019 our query will look like this:
+
+```python
+import datetime #1
+date_before = datetime.datetime(2019, 5, 3, 0, 0, 0) #2
+posts = Post.objects.filter(created_on__lt=date_before) #3
+```
+
+Code explanation:
+- Line #1: We will need to import datetime library to create Date or DateTime objects
+- Line #2: Here we are creating a DateTime object to represent May 3rd, 2019. The last 3 zeros or to represent time. The zeros are optional. The object is stored in the variable `date_before`
+- Line #3: This is the actual query, we are looking for all posts with the value of created_on less than the `date_before` DateTime object we created (May 3rd, 2019).
+
+We can also compare to Date objects that exclude time. However, to compare a DateTimeField to a Date value we add the `__date` lookup function to force date comparison only. Let's also show how we can look for date this time **AFTER** May 3rd, 2019:
 
 ```python
 import datetime
-start_date = datetime.datetime(2019, 1, 3)
-end_date = datetime.datetime(2019, 3, 25) # after start_date
+date_before = datetime.date(2019, 5, 3) #1
+posts = Post.objects.filter(created_on__date__gt=date_before) #2
+```
+
+Code Explanation:
+- Line #1: Notice how we create a Date object this time and will be looking up a DateTime field.
+- Line #2: Since created_on is a DateTime field we need to force it to date comparison because we will be comparing to a Date object, so we use `created_on__date` (this will ignore the time) and the operation is `__gt` to find posts after May 3rd, 2019.
+
+Using the same concept, we can compare of a date is in the past or the future by comparing to:
+- `datetime.datetime.now()` for DateTimeFields
+- `datetime.date.today()` for DateFields
+
+Here is an example:
+
+```python
+import datetime
+past_appointment = Appointment.objects.filter(
+  scheduled_on__lt=datetime.datetime.now()
+  )
+future_appointment = Appointment.objects.filter(
+  scheduled_on__gt=datetime.datetime.now()
+  )
+```
+
+To lookup dates within a range, we only need to specific 2 points in time and use the `__range` lookup function instead of `__lt` or `__gt`. For example, if we want to find all posts created between April 1st, 2021 and May 1st, 2021, this is how the query would look like:
+
+
+```python
+
+start_date = datetime.datetime(2021, 4, 1)
+end_date = datetime.datetime(2021, 5, 1) 
 posts = Post.objects.filter(
   created_on__range=(start_date, end_date)
   )
 ```
 
-- Range is from midnight start of start_date to midnight start of end_date, so Posts during end_date are not included
-- Mixing of date with datetime in range is not allowed
-- Range can be used with numeric fields also
-
----
-
-## Filtering and Searching The List
-
-- To add a search or filter feature to the list the following is needed
-  1. A urlpatterns that accepts a query
-  2. A view function that uses the query to filter the list
-  3. Everything else remains the same
-
----
+- **Important Note:** The start date in the `__range` lookup must always come before the end date.
 
 
-## Search/Filter Updated blog/urls.py
+## Blog Post Detailed View
 
-1. A urlpatterns that accepts a query:
-   
-```python
-from . import views 
-from django.urls import path
+In web application, when a list of objects is displayed to the user, they are usually given the option to view each one in detail. So what we will try to do now is to:
 
-urlpatterns = [
-    path('', views.list_posts),
-    path('search/body/<str:q>/', views.search_posts),
-]
-```
-  - Notice how the path has meaning
----
+1. Create the detailed view for a single post
+2. Link the List Post view to the Detailed Post view so that a use can view a post's details by clicking on one in the list.
 
-## Search/Filter Updated blog/views.py
-2. A view function that uses the query to filter the list, Just add the following view function:
-```python
-def search_posts(request, q):
-  posts = Post.objects.filter(body__icontains=q)
-  context = {
-    'post_list': posts,
-  }
-  return render(request, "post_list.html", context)
-```
+### Creating the Detailed View
 
----
+The detailed view is almost identical to the list view but will differ in the following aspects:
 
-## Compare search_posts to list_posts
+1. A lookup value must be specified in the path that will be used to fetch the object. In the case of our blog posts, this will be the slug of the post. This value must be unique.
+2. `Post.objects.get` is used instead of `Post.objects.filter`. `get` is used to fetch a single object, while `filter` is used to get a list of objects. Usually, only exact lookups are needed with get. 
+3. Template file will not need a loop, because a single Post object will be displayed
 
-```python
-def list_posts(request):
-  posts = Post.objects.all()
-  context = {
-    'post_list': posts,
-  }
-  return render(request, "post_list.html", context)
-```
----
 
-## The Search View is Complete
-
-- Included q argument for the query to search view function
-- Used filter to get posts that match query
-  - Here we searched the body
-- Reused the same template post_list.html
-- That's it!
-- Can you do a search/filter for titles? or created_on dates?
-
----
-
-## Complex Lookups
-
-- If you want to use complex lookup conditions
-- For example, a query that matches the body OR the title
-- Read the documentation on [Django Complex Queries](https://docs.djangoproject.com/en/3.2/topics/db/queries/#complex-lookups-with-q-objects)
-
----
-
-### Other interesting Lookups to Investigate
-
-- in
-- week, week_day, and quarter (for Date/DateTime)
-- regex and iregex
-- See [Djangos QuerySet Lookup documentation](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups)
-
----
-
-### Fetching Single Objects
-
-- Just replace filter with get
-- get must return a single object (not a list) otherwise it will through an Exception
-  - For our Post models, the exception classes are:
-    - Post.DoesNotExist if object was not found
-    - Post.MultipleObjectsReturned if multiple objects return (not unique)
-- Typically use for primary key lookup
-
----
-
-### Shortcut for Using Get
-
-- Django provides the shortcut function `get_object_or_404` that doesn't through an error, but displays the 404 page instead
-- 404 error means the page is not found
-- Most common use case
-```python
-from django.shortcuts import get_object_or_404
-from .models import Post
-
-def my_view(request, pid):
-  context = {
-    post = get_object_or_404(Post, pk=pid)
-  }
-```
-
----
-
-### Updating Blog to Show Post Details
-
-Let's create the view for displaying a Post:
+Let's add the `show_post` view to show a single post in detail:
 
 ```python
 def show_post(request, id):
-  post = Post.objects.get(slug=id)
+  obj = Post.objects.get(slug=id)
   context = {
-    'post': post,
+    'post': obj, # The post slot has a single post
   }
   return render(request, "post_detail.html", context)
 ```
 
-- We will get the id from the URL path, so we include it as a view function argument.
-- Can you use get_object_or_404 instead?
----
-
-### Updating blog/urls.py
-
-List of urlpatterns should look like this:
+Notice the `show_post` view function has an id argument, which means we must also create a path with a matting `id` pattern. Add the following pattern to `blog/urls.py`:
 
 ```python
-  urlpatterns = [
-    path('', views.list_posts),
-    path('search/body/<str:q>/', views.search_posts),
-    path('<slug:id>/', views.show_post),
-  ]
+  path('<slug:id>/', views.show_post),
 ```
 
-For show_post, Django take whatever slug is in the url and pass it as the id argument to the show_post view function
+Finally, create the template `templates/post_detail.html`:
 
----
-
-### Adding the Template
-
-Add post_detail.html to blog/templates, it should contain the following:
 
 ```html
 <!doctype html>
@@ -508,13 +367,39 @@ Add post_detail.html to blog/templates, it should contain the following:
 </html>
 ```
 
+Notice how the template doesn't use a for loop because the `show_post` view created a `post` slot in the context that includes only a single post.
+
+### Fetching Single Objects
+
+- Just replace filter with get
+- get must return a single object (not a list) otherwise it will through an Exception
+  - For our Post models, the exception classes are:
+    - Post.DoesNotExist if object was not found
+    - Post.MultipleObjectsReturned if multiple objects return (not unique)
+- Typically use for primary key lookup
+
 ---
 
-### The Result
+### Shortcut for Using Get
 
-{{< figure src="django-ddv-result2.png" >}}
+The `get` lookup function will fetch a single object and wil throw:
+  - Post.DoesNotExist if object was not found
+  - Post.MultipleObjectsReturned if multiple objects return (not unique)
+The most common case to dealing with such errors is to display a 404 error in the case of the object not existing and Django provides the shortcut function `get_object_or_404` that doesn't through an error, but displays the 404 page instead. Here is how to use this `get_object_or_404` function instead of `get` to achieve the same objective:
 
-Make sure you open the path /blog/blog-post-slug and replace blog-post-slug with the correct slug value for the post you want to view
+```python
+from django.shortcuts import get_object_or_404
+from .models import Post
+
+def my_view(request, pid):
+  context = {
+    post = get_object_or_404(Post, pk=pid)
+  }
+```
+
+Here is how our detailed view would look like, just make sure you put the correct post slug to view it:
+
+{{< figure src="courses/350/django-ddv-result2.png" >}}
 
 ---
 
@@ -537,32 +422,39 @@ Replace it with this:
 ```
 Change it to make the title only clickable
 
----
-
 ### Result
 
-{{< figure src="django-ddv-result3.png" >}}
+{{< figure src="courses/350/django-ddv-result3.png" >}}
 
 Now you don't have to remember post slugs as they are now clickable
 
+What we did here:
+```
+<a href="/blog/{{ post.slug }}">
+```
 
-
-
-
+If we converted the titles of our posts into links and linked them directly to the detailed view which is `/blog/post-slug-here`. With {{ post.slug }}, we replace the `post-slug-here` with the correct slug for our posts from the database. This way if clicked, the title would send you to the correct post.
 
 
 ## Final Thoughts
 
-- 
 1. [Making queries documentation](https://docs.djangoproject.com/en/3.2/topics/db/queries/)(Required Reading!)
 2. [QuerySet reference](https://docs.djangoproject.com/en/3.2/ref/models/querysets/)(See what is available to use)
   - Suggested methods to read about:
     - exclude, order_by, reverse, count, latest, earliest, first, last, exists
     - aggregate and annotate might seem confusing at this time, we will cover them later
-  
+3. See the slides to see how a search view could be implements
+4. Read the [complex lookup documentation](https://docs.djangoproject.com/en/3.2/topics/db/queries/#complex-lookups-with-q-objects) if you would like to use OR/AND logical operators in your queries.
+5. A complete list of query lookup function can be found in [Django's QuerySet Lookup documentation](https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups)
+
 
 ## Review Questions and Challenges
 
 - Create a view to fetch the list of unpublished posts
 - What is the difference between the query lookup functions exact, iexact, contains, icontains?
+- How can you lookup posts created:
+  - on the1st of every month?
+  - at 2am (any date)
+  - at 5pm on March 2nd (regardless of the year)
+  - at 5pm on March 2nd in 2019 
 

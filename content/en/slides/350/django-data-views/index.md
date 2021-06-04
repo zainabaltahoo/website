@@ -425,8 +425,8 @@ posts = Post.objects.filter(created_on__date__gt=date_before)
 
 ```python
 import datetime
-posts = Post.objects.filter(
-  created_on__date__gt=datetime.datetime.now()
+posts = Appointment.objects.filter(
+  scheduled_on__lt=datetime.datetime.now()
   )
 ```
 - Use `datetime.datetime.now()`  or `datetime.date.today()`
@@ -553,22 +553,6 @@ def list_posts(request):
 
 ---
 
-### Shortcut for Using Get
-
-- Django provides the shortcut function `get_object_or_404` that doesn't through an error, but displays the 404 page instead
-- 404 error means the page is not found
-- Most common use case
-```python
-from django.shortcuts import get_object_or_404
-from .models import Post
-
-def my_view(request, pid):
-  context = {
-    post = get_object_or_404(Post, pk=pid)
-  }
-```
-
----
 
 ### Updating Blog to Show Post Details
 
@@ -585,6 +569,23 @@ def show_post(request, id):
 
 - We will get the id from the URL path, so we include it as a view function argument.
 - Can you use get_object_or_404 instead?
+---
+
+### Shortcut for Using Get
+
+- Django provides the shortcut function `get_object_or_404` that doesn't through an error, but displays the 404 page instead
+- 404 error means the page is not found
+- Most common use case
+```python
+from django.shortcuts import get_object_or_404
+from .models import Post
+
+def my_view(request, pid):
+  context = {
+    post = get_object_or_404(Post, pk=pid)
+  }
+```
+
 ---
 
 ### Updating blog/urls.py

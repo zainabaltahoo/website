@@ -120,7 +120,11 @@ def test_view(request):
   """)
 ```
 
-Notice how we created a placeholder in the HTML string for the variable name. Whatever content is in the variable name will be included in the HTML string. The name in the variable could be read from a file or database, or asked from the user. This way as different user open the same view, they will see a page showing a different name. This is the main idea of how to turn static html into dynamic. It is simply to construct HTML strings on the fly and changing it based on data stored in variables in our application.
+Notice how we created a placeholder in the HTML string for the variable name. Whatever content is in the variable name will be included in the HTML string. The name in the variable could be read from a file or database, or asked from the user. This way as different user open the same view, they will see a page showing a different name. This is the main idea of how to turn static html into dynamic. It is simply to construct HTML strings on the fly and changing it based on data stored in variables in our application. The end result looks like this:
+
+{{< figure src="/courses/350/django-template-result.png" >}}
+
+---
 
 ## Quick HTML Reference
 
