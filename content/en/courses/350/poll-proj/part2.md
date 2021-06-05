@@ -30,7 +30,7 @@ Due Date is <strong>Sunday June 6th before 1st lab</strong>
 - [ ] **(10 pts)** Create a view to show the details of a single poll (all information about the poll), including the question and all the choices available.
 - [ ] **(5 pts)** Create a view to list the names of everyone that selected a specific choice in a poll and the time they submitted their response
 - [ ] **(5 pts)** In the poll list view, make the title of each poll into a link that opens the corresponding poll's detailed view when clicked.
-- [ ] **(5 pts)** In the poll list view, show number of responses for each poll.
+- [ ] **(5 pts)** In the poll list view, show number of options for each poll.
 - [ ] **(5 pts)** In the detailed view, show the total number of responses, and for each response, show how many people chose that response.
 - [ ] **(5 pts)** In the detailed view, turn each choice into a link if clicked will open the view the lists the names of everyone that made that choice.
 
