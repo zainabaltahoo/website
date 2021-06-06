@@ -1,11 +1,11 @@
 ---
-title: Traversing Relationships
-summary: How we can traverse relationships in django objects and fetch/present them appropriately in views/templates
+title: Django Forms
+summary: How to use Django forms to handle data input
 authors: []
 tags: [isom350]
 categories: []
-date: "2021-05-24T05:06:22Z"
-draft: true
+date: "2021-06-06T12:33:41Z"
+draft: false
 slides:
   # Choose a theme from https://github.com/hakimel/reveal.js#theming
   theme: moon
@@ -45,188 +45,407 @@ slides:
 
 Mohammad AlMarzouq
 
-Traversing Relationship
+Django Forms
 
 ---
 
-### Relationship in Django
+### What Are Forms?
 
-- Represented in models using
-  - ForeignKey
-  - OneToOneField
-  - ManyToMany Field
-
----
-
-### Updating our Blog App
-
-- Each blog post will have multiple comments
-- Comment author will provide comment, optional name, and optional email
-- Comments will be displayed along with author name in order below the post
-- Date/Time of comment will be displayed next to it
-- Number of comments and date/time of latest comment will be shown next to each post in post list
+- HTML component 
+- Used to send user input to server
+- POST forms include data in the body
+- GET forms include data in the url
+- Submit button is needed to perform send action
+  ```html
+  <form>
+    <!-- data input components here -->
+    <input type=submit>
+  </form>
+  ```
 
 ---
 
-### Updated ERD
+### What is the Role of Django Forms
 
-```mermaid
-erDiagram
-    POST ||--o{ COMMENT : Has
+- Manages the creation of the data input components
+  - Template must still include the form and submit tags
+  - Can Auto generate forms based on models definition
+- Manages security of forms
+  - Data submission in web apps is very risky
+  - Tries to prevent exploits and modification
 
-    POST {
-        string title
-        string slug
-        string body
-        datetime created_on
-        datetime updated_on
-        int status 
-    }
-
-    COMMENT{
-        string comment
-        string author
-        string email
-        datetime created_on
-    }
-    
-```
 ---
 
-### Updated Models.py
+### Using Django Forms
+
+- Define forms in forms.py
+  - Very similar to models
+- Use forms in views that accept user input
+  - Standard steps to using forms
+
+
+---
+
+### Updating Blog App to Use forms
+
+- We would like to create a view that enables writing a blog post and avoid using the Django admin
+- This view is a data creation view (from CRUD)
+  - It allows for the creation of posts
+  - So we define a form that allows the user to enter data needed for a post
+
+---
+
+### The Post Model
 
 ```python
-class Comment(models.Model):
-  comment = models.TextField()
-  author = models.CharField(max_length=100, blank=True, null=True)
-  email = models.EmailField(blank=True, null=True)
+class Post(models.Model):
+  title = models.CharField(max_length=200, unique=True)
+  slug = models.SlugField(max_length=200, unique=True)
+  body = models.TextField()
   created_on = models.DateTimeField(auto_now_add=True)
-  post = models.ForeignKey('Post', on_delete=models.CASCADE) 
+  updated_on = models.DateTimeField(auto_now=True)
+  status = models.IntegerField(choices=STATUS, default=0)
 ```
 
----
-
-### Admin and Migrations
-
-- Create an inline Admin for the Post
-- Don't forget makemigrations and migrate, why?
-- Create at least 2 posts
-- Create 2 comments for 1st post, and 3 comments for 2nd post.
+- User will post the title and body.
+- Slug is auto-generated from title
+- Status is unpublished by default
+- Dates are auto-inserted
 
 ---
 
-### Traversing Relationship
+### The Post Form
 
-- How do we display comments for each post?
-
----
-
-## From Comment to Post
-
-- The Many to One direction
-- Just reference the relationship field:
-
+- Create blog/forms.py:
 ```python
-comment = Comment.objects.get(pk=id)
-post = comment.post
+from django import forms
+
+from .models import Post
+
+class PostForm(forms.ModelForm):
+  class Meta:
+    model = Post
+    fields = ["title", "body"]
 ```
-- The post field will give you a Post object
+---
+
+### The PostForm
+
+- Notice how PostForm inherits from forms.ModelForm
+- A model form is a Django form based on a Django model
+  - We set the model as Post
+  - Django will choose best input components based on the model field types
+- in the fields attribute, we are telling Django what input the user will provide
+  - In this case it is title and body
 
 ---
 
-### From Post to Comment
+First Without Auto-Creating The Slug Field Value
 
-- The One to Many direction
-- Use reverse relationships
-- For every relationship Django makes available a field in the related model to allow moving in the other direction
-
---- 
-
-### From Post to Comment
-
-- For ForeignKey the reverse relationship gets the name model_set, for example comment_set in the current example
-- It's just a model manager like objects, you can use all() and filter() on it
-- Everything you learned about fetching objects using all and filter applies here as well
-  
 ---
+
+### The create_post View 
 
 ```python
-post = Post.objects.get(pk=pid)
-comments = post.comment_set.all()
-```
-- comments will include only the comments that belong to the post object in this example
-- comments will be a list of objects
-  
----
+from django.shortcuts import render, redirect
 
-### The Reverse Relation Model Manager
+from .forms import PostForm
 
-- Everything you learned about the objects model manager applies
-  - You can use all, filter, and get
-  - also update, create, and delete (yet to be covered)
-  - Applies to ForeignKeyField, ManyToManyField, and OneToOneField, but slightly different
-  - Read the [documentation on model fields](https://docs.djangoproject.com/en/3.2/ref/models/fields/)
+def create_post(request):
+  form = PostForm(request.POST or None)
 
----
-
-### Modifying The Reverse Relationship Name
-
-- The attribute name by default is modelname_set
-- Can be changed using the related_name option in Comment mode in models.py
-```python
-  post = models.ForeignKey('Post', 
-    on_delete=models.CASCADE, 
-    related_name="comments") 
-```  
-- Will replace `post.comment_set` with `post.comments`
-- Useful for ManyToMany or multiple relationships of the same type
----
-
-### Remember
-
-- When traversing relationships, you are just fetching related data.
-- Everything else about the view is just the same
-
----
-
-### Updated Blog views.py
-
-```python
-def detailed_post_view(request, slug):
   data = {}
-  post = Post.objects.get(slug=slug)
-  data["post"] = post
-  data["comments"] = post.comment_set.all()
-  return render(request, "detailed_post.html", context=data)
+  data["form"] = form
+
+  if form.is_valid():
+    post = form.save()
+    return redirect("show-post", s=post.slug)
+
+  return render(request, 'create_post.html', data)
 ```
-- What if you wanted to filter comments to exclude ones without a name?
 
 ---
 
-### detailed_post.html Template
+```python
+from django.shortcuts import render, redirect
+
+```
+
+- Notice we have imported the redirect function
+- Used like render
+- Forces the browser to open a specific page
+  - We will need to give urls paths names for easy referral
+
+---
+```python
+from .forms import PostForm
+```
+
+- We must import the PostForm we created in forms.py
+
+---
+```python
+  form = PostForm(request.POST or None)
+```
+
+- Here we are creating the form
+- Notice the argument is request.POST or None
+  - It means if there is data coming from the client, give it (bind it) to the form
+    - The form will allow us to validate the data
+  - Otherwise, create an empty form
+
+---
+
+```python
+  data = {}
+  data["form"] = form
+```
+
+- We are putting the form in the context to deliver it to the template
+- It will be displayed in the template
+
+---
+
+```python
+  if form.is_valid():
+    post = form.save()
+    return redirect("show-post", s=post.slug)
+  return render(request, 'create_post.html', data)
+```
+
+- The if statement will only be true if Django receives valid data from the client
+- form.save() used to create a new post from the submitted data
+- Redirect will send the client to the show-post view
+- The create_post.html template is only shown is data is not valid or empty
+
+---
+
+```python
+  return redirect("show-post", s=post.slug)
+```
+- For redirect to work we must give our paths in urls.py names:
+```python
+  path('post/<slug:s>/',views.show_post, name="show-post"),
+```
+- We gave the show_post path the name `show-post`
+- Can be any name but must be unique for redirect to find the path
+- The second argument in redirect `s=` must match the name of the slug pattern s in the path 
+
+
+---
+
+
+### Updated urls.py
+
+- Add the following entry to wire the view in urls.py:
+
+```python
+  path('create/post/',views.create_post)
+```
+
+---
+
+### The create_post.html Template
 
 ```html
- <h1>{{ post.title}}</h1>
-  <ul>
-    <li>Posted on: {{ post.created_on }} </li>
-    <li>Last updated: {{ post.updated_on }} </li>
-  </ul>
-  <p>
-    {{ post.body }}
-  </p>
-  <h2>comments:</h2>
-  <ul>
-  {% for c in comments %}
-    <li>{{ c.author }}: {{ c.comment }}</li>
-  {% endfor %}
-  </ul>
+<form action="." method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+<input type="submit" value="Submit">
+</form>
 ```
+- We must include the form (with action and method) and submit button
+- csrf_token tag must be there for Django to manage security
+- {{ form.as_p }} displays each component of the form inside a p tag
+  - Try also {{ form.as_table }}
+
+---
+
+- The create_post view is complete
+- Problem is we did not provide a slug for the posts
+- This will create problems, so we must modify our code
+
+---
+
+
+Now With Auto-Creating The Slug Field Value
+
+---
+
+### The create_post View 
+
+```python
+from django.utils.text import slugify
+
+from .forms import PostForm
+
+def create_post(request):
+  form = PostForm(request.POST or None)
+
+  data = {}
+  data["form"] = form
+
+  if form.is_valid():
+    post = form.save(commit=False)
+    post.slug = slugify(post.title)
+    post.save()
+    return redirect("show-post", s=post.slug)
+
+  return render(request, 'create_post.html', data)
+```
+
+---
+
+### The Update
+
+- Everything remained the same except this part:
+
+```python
+  post = form.save(commit=False)
+  post.slug = slugify(post.title)
+  post.save()
+```
+
+---
+
+```python
+  post = form.save(commit=False)
+```
+- Here a post object was created but was NOT stored in the database
+- This allows us to modify the data in the object
+
+---
+
+```python
+  post.slug = slugify(post.title)
+  post.save()
+```
+
+- Here we modify the slug field by slugifying the title
+- We imported the slugify function that converts any string into a slug
+- Then we save the post in the database
 
 ---
 
 ### The Result
 
 
-{{< figure src="django-relationships.png" >}}
+{{< figure src="django-forms-result.png" width="35%" height="35%" >}}
 
-Do not forget to wire the urls
+Here is the create post view with the form
+
+---
+
+### The Result
+
+
+{{< figure src="django-forms-result2.png" width="35%" height="35%" >}}
+
+Forms will ensure input data is valid and give appropriate errors automatically
+
+---
+
+- Upon successful submission of data, the browser will be redirected to the newly created post
+- Because we used redirect instead of render
+- Can you modify the view to redirect to the post list instead?
+
+---
+
+### Using Form in Existing Views
+
+- Forms can also be used in existing views
+- Let's add a comment form to the show_post view
+- Which allows readers to write comments
+
+---
+
+### Creating The Form
+
+- Update blog/forms.py:
+
+```python
+from .models import Post, Comment
+
+class CommentForm(forms.ModelForm):
+  class Meta:
+    model = Comment
+    fields = ["comment", "author", "email", "post"]
+    widgets = {
+      'post': forms.HiddenInput(),
+    }
+```
+- Explain what's going on
+- widgets allows us to change how a field will be displayed in a form
+  - Remove it and see what happens
+
+---
+
+### Updating show_post View
+
+```python
+def show_post(request, s):
+  obj = Post.objects.get(slug=s)
+  comments = obj.comment_set.all()
+  data = {}
+  data["post"] = obj
+  data["comment_list"] = comments
+  
+  form = CommentForm(request.POST or None, initial={"post":obj.pk} )
+  data["comment_form"] = form
+  if form.is_valid():
+    form.save()
+    return redirect("show-post", s=obj.slug)
+  
+  return render(request, "post_detail.html", context=data)
+
+```
+
+---
+
+### The Changes
+
+- Everything remained the same except this part:
+
+```python
+  form = CommentForm(request.POST or None, initial={
+    "post":obj.pk
+  }) 
+  data["comment_form"] = form
+  if form.is_valid():
+    form.save()
+    return redirect("show-post", s=obj.slug)
+```
+
+- You should be able to explain what is happening here
+
+---
+
+### Setting The ForeignKey
+
+- Because a comment must be related to a post, we give the form the primary key value of the post using initial argument:
+
+```python
+form = CommentForm(request.POST or None, initial={
+  "post":obj.pk
+  })
+```
+
+---
+
+### The Initial Argument
+
+- Accepts a dictionary
+- Will match keys to field names in the form
+- Will use matching value to populate the fields with an initial value
+- Used to set ForeignKeys or the value of any other field
+- Can set the values of multiple fields as a time
+  - Just include more key-value pairs in the dictionary
+
+---
+
+### Widgets
+
+- Widgets are the UI components used to display on the browser
+- Django will automatically select the appropriate widget for each model field
+- We can use widgets field when defining the form to manually choose the widget
+- List of available widgets can be found in the [Django Form Field Widgets documentation](https://docs.djangoproject.com/en/3.2/ref/forms/widgets/)
