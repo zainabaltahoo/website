@@ -236,6 +236,20 @@ from .forms import PostForm
 
 ---
 
+### Redirecting to Post List
+
+- Much easier since there is no argument needed to list post.
+- Just give the post list view a name:
+```python
+  path('posts/',views.list_posts, name="list-posts"),
+```
+- Then redirect to this path using it's name with no need for additional arguments:
+```python
+  return redirect("list-posts")
+```
+
+---
+
 
 ### Updated urls.py
 
