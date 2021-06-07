@@ -57,7 +57,7 @@ Django Forms
 - GET forms include data in the url
 - Submit button is needed to perform send action
   ```html
-  <form>
+  <form action="" method="POST">
     <!-- data input components here -->
     <input type=submit>
   </form>
@@ -82,6 +82,8 @@ Django Forms
   - Very similar to models
 - Use forms in views that accept user input
   - Standard steps to using forms
+- Include the form in our template inside the form tag
+  - Add also {% csrf_token %} 
 
 
 ---
