@@ -72,7 +72,8 @@ Django Forms
   - Can Auto generate forms based on models definition
 - Manages security of forms
   - Data submission in web apps is very risky
-  - Tries to prevent exploits and modification
+  - Tries to prevent exploits such as sql injection, XSS, and CSRF attacks
+- Handle input validation
 
 ---
 

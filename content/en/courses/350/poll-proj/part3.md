@@ -24,30 +24,31 @@ Due Date is <strong>Tuesday June 15th before 1st lab</strong>
 
 ## Requirements for This Assignments (50 pts)
 
-- [ ] **(5 pts)** Create a view to post 
-- [ ] **(5 pts)** Create a view to list all the posts which have a **published** status, show the poll title and date it will be active until.
-- [ ] **(5 pts)** Create a view to list all the posts which have a **unpublished** status, show the poll title and date it will be active until.
-- [ ] **(10 pts)** Create a view to show the details of a single poll (all information about the poll), including the question and all the choices available.
-- [ ] **(5 pts)** Create a view to list the names of everyone that selected a specific choice in a poll and the time they submitted their response
-- [ ] **(5 pts)** In the poll list view, make the title of each poll into a link that opens the corresponding poll's detailed view when clicked.
-- [ ] **(5 pts)** In the poll list view, show number of options for each poll.
-- [ ] **(5 pts)** In the detailed view, show the total number of responses, and for each response, show how many people chose that response.
-- [ ] **(5 pts)** In the detailed view, turn each choice into a link if clicked will open the view the lists the names of everyone that made that choice.
+- [ ] **(10 pts)** Create a view to create a poll that redirects you back to the poll list upon successful completion
+- [ ] **(10 pts)** Create a view to add a single option to a poll. The view should display the poll, existing options, and a form to add one more options. The view should redirect you to the same view upon successful completion so you can add more options if you choose to (HINT: You have to use redirect to force the client to reload the page with an empty form for creating the poll)
+- [ ] **(10 pts)** Create a view that creates a response associated with a selected option. The view should display the poll and the chosen option. The submit button label should be "Confirm Choice". (Hint: The selected option should be specified in the URL, for example, respond/option/5, means that the user chose to select option with id 5). Upon successful creation of response, redirect the user to show the detailed view of the poll.
+- [ ] **(10 pts)** Create a view that allows you to edit the poll question and details, upon successful completion should redirect you to the detailed poll view
+- [ ] **(10 pts)** Create a view that allows you to edit a single poll option, upon successful completion should redirect you to the detailed poll view
 
 
 ### Bonus Tasks
 
 These tasks will involve reading the Django documentation and figuring out things on your own. Perform these tasks only after you complete the previous requirements of the assignment.
 
-- [ ] **(5 pts)** Use the same URL pattern for both the published and unpublished poll list view to display them both instead of having separate entries in urls.py
-- [ ] **(5 pts)** In the view that lists responses, instead of showing date/time show the time since the response was submitted. For eample, **submitted 10 days, 6 hours, 5 minutes ago**. Search Django's template filters to find the solution. It should be a very simple one. 
-- [ ] **(10 pts)** Read about the [bootstrap CSS framework](https://getbootstrap.com/docs/5.0/getting-started/introduction/) and try to use it to improve the look and feel of your application
-- [ ] **(20 pts)** Get a head start and read this [Django forms tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms), try to create a view that allows users to submit their responses **(HINT: You will also need to read about ModelChoiceField)**
+
+- [ ] **(5 pts)** In the poll list view, add a link at the bottom of the list to create a new poll, link it to the create poll view
+- [ ] **(5 pts)** In the poll detailed view, next to the poll question to edit the poll (for editing the poll)
+- [ ] **(5 pts)** In the poll edit view, put a link next to each option to edit the option and send you to the edit option view
+- [ ] **(5 pts)** In the poll edit view, add a link below the options to add another option that sends you to the option adding view
+- [ ] **(5 pts)** In the show poll view, put a "vote" link next to each option that will send you to the create response view
+- [ ] **(10 pts)** For the links, instead of typing the path yourself, give the path names and use the [url template tag from Django](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#url)
+- [ ] **(20 pts)** In the show_poll view, add a form to allow for users to post comments about the poll. Do not forget to create a model for the comments that must be associated with a poll. The comment should allow user to enter his name, email, and text of the comment. The comments should be displayed above the comment form in chronological order, which is why you must record the time the comment was created also.
+- [ ] **(5 pts)** If you have successfully used bootstrap, try to convert all the link for editing bootstrap to look like buttons
 
 
 ## How to Start and Submit Your Project
 
-1. Join the [poll-project part2 assignment on github classroom](https://classroom.github.com/a/X5Kr-4oh).
+1. Join the [poll-project part3 assignment on github classroom](https://classroom.github.com/a/X5Kr-4oh).
 2. Click on the **Work on Replit** button on the readme file to import a private project for the assignment.
    - IMPORTANT: The repl may crash as you import the project, you will have to go to "my repls" and re-open the repl and it should work fine.
 3. Add the file bonus.md and list all the additional bonus tasks you completed in your assignment.
