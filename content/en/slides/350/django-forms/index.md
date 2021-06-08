@@ -466,3 +466,274 @@ form = CommentForm(request.POST or None, initial={
 - Django will automatically select the appropriate widget for each model field
 - We can use widgets field when defining the form to manually choose the widget
 - List of available widgets can be found in the [Django Form Field Widgets documentation](https://docs.djangoproject.com/en/3.2/ref/forms/widgets/)
+
+---
+
+### Updating Views
+
+- Similar to creation view in every way, except:
+  - Will show existing data
+  - Allows you to update the data for a single object
+  - Will require the primary key for the object to be updated
+- Uses the same form as the creation view
+  - Must load the object and pass it to form using `instance` argument
+- Will require a new view, template and url path
+
+---
+
+### Reminder of the create_post view
+
+```python
+def create_post(request):
+  form = PostForm(request.POST or None)
+
+  data = {}
+  data["form"] = form
+
+  if form.is_valid():
+    post = form.save(commit=False)
+    post.slug = slugify(post.title)
+    post.save()
+    return redirect("show-post", s=post.slug)
+
+  return render(request, 'create_post.html', data)
+```
+
+---
+
+### The New Edit Post View
+
+
+```python
+def edit_post(request, s):
+  p = get_object_or_404(Post, slug=s)
+  f = PostForm(request.POST or None, instance=p)
+
+  data = {}
+  data["form"] = f
+  data["post"] = p
+
+  if f.is_valid():
+    post = f.save(commit=False)
+    post.slug = slugify(post.title)
+    post.save()
+    return redirect("show-post", s=post.slug)
+
+  return render(request, 'edit_post.html', data)
+```
+- Very similar to the create_post with a few exceptions
+- Dont' forget to import get_object_or_404
+
+---
+
+## What Changed?
+
+---
+
+### First Change
+
+```python
+def edit_post(request, s):
+```
+
+- The name of the view function
+- Added an argument that holds the identifier of the Post we will edit
+  - It will be a slug in this case
+
+---
+
+### Second Change
+
+```python
+  p = get_object_or_404(Post, slug=s)
+  f = PostForm(request.POST or None, instance=p)
+```
+
+- Instead of creating an empty form, we must first fetch the object we want to edit
+- Then we create the form object and pass the object we want to edit using the instance argument
+  - This will put the data in our form and update it when we call the save() method of the form
+  - It is very different from initial
+  - initial is only used for creating objects
+
+---
+
+### Third Change
+
+```python
+  data = {}
+  data["form"] = f
+  data["post"] = p
+```
+
+- Include the post object in the context in case we need it in the template
+
+---
+
+### Finally
+
+```python
+return render(request, 'edit_post.html', data)
+```
+
+- We use a different template in case we want to show different information in the edit screen
+- It is possible to reuse the create template
+
+---
+
+### The edit_post.html Template
+
+```html
+<h2>Edit Post</h2>
+<form action="." method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+<input type="submit" value="Submit">
+</form>
+```
+
+- Almost identical to the create_post.html template
+- A different template gives you the freedom to change what is displayed to the user in the edit screen
+
+---
+
+### Adding The URL Path
+
+- Finally, we add the following url path to blog/urls.py and our edit view is read:
+
+```python
+path('edit/post/<slug:s>/',views.edit_post),
+```
+
+---
+
+### The Result
+
+{{< figure src="django-forms-edit.png" width="35%" height="35%" >}}
+
+---
+
+### The Post Deletion View
+
+- No form is needed to delete an object
+- It is recommended however that a confirmation form is added
+- The object to be deleted is specified in the url
+- View deletes the object and client redirected to another page
+  - No template required unless there is a confirmation page
+
+---
+
+## Deletion View Without Confirmation
+
+- Create the view:
+```python
+def delete_post(request, s):
+  p = get_object_or_404(Post, slug=s)
+  p.delete()
+  return redirect('list-posts')
+```
+Then add the path:
+
+```python
+path('delete/post/<slug:s>/',views.delete_post),
+```
+
+That's it!
+
+---
+
+### Now With a Confirmation Step
+
+---
+
+### Just Create A Template
+
+- Will have an HTML GET form with two inputs in confirm.html template:
+
+```html
+<h2>{{ message }}</h2>
+<form action="." method="GET">
+  <input type="submit" name="confirm" value="Confirm">  
+  <input type="submit" name="cancel" value="Cancel">
+</form>
+```
+
+---
+
+### About confirm.html Template
+
+- Notice we use a GET form without Django forms
+- We add two input buttons with a name attribute
+  - The name attribute is used in our conditions in the view
+  - The value attribute is the label displayed on the buttons
+- The message variable will be set by the view to display an appropriate confirmation message
+  - Allows for changing the message for deleting objects other than posts
+
+
+---
+
+### Now Update The View To Add Confirmation
+
+```python
+def delete_post(request, s):
+  p = get_object_or_404(Post, slug=s)
+  m = f" Delete post {p.title}?"
+  data = {
+    "message": m,
+  }
+  if "confirm" in request.GET:
+    p.delete()
+    return redirect('list-posts')
+  elif "cancel" in request.GET:
+    return redirect('list-posts')
+  
+  return render(request, "confirm.html", context=data)
+```
+
+---
+
+### First Change
+
+```python
+  m = f" Delete post {p.title}?"
+  data = {
+    "message": m,
+  }
+```
+- The message template variable is created which will hold a confirmation message
+- This will allow us to modify the message for deleting objects other than Posts
+
+---
+
+### Second Change
+
+```python
+  if "confirm" in request.GET:
+    p.delete()
+    return redirect('list-posts')
+  elif "cancel" in request.GET:
+    return redirect('list-posts')
+  else:
+    return render(request, "confirm.html", context=data)
+```
+- Deletion is now conditional on the request GET variable:
+  - If `confirm` was selected, then object is deleted and user redirected
+  - If `cancel` was selected, then object is NOT deleted and user redirected
+  - Otherwise, render confirm.html template
+---
+
+### The Confirmation Form is Generic
+
+- It's not specific to delete Post object 
+- You can use the template to confirm any delete operation
+- Just set the confirmation message you want to show
+
+---
+
+## Final Thoughts
+
+- User should not remember paths to a web application
+- Instead, add links to views to allow users to select which view to run
+- The [url template tag](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#url) is useful in creating links
+- If a view is not linked, then the user cannot get to the view
+- Views should now exceed 3 clicks deep, preferably 2 at most
+  
