@@ -82,3 +82,15 @@ Teams are expected to utilize what they have learned in this course about GitHub
  3. How appropriate are the model definitions
  4. How well the code meets the minimum requirements mentions in the requirements sections above (number of views ..etc)
  5. Include Bonus.md file in the main directory of the project and list any new features that you used that we haven't talked about in class. Be sure to list the bonuses and mentioned in which file we can see the bonus work and line number. **Failure to follow this instruction would mean that the project team would not receive any bonus points**.
+
+### Code and Demo Evaluation
+
+This is an example list of some of the issues I will look for when evaluating your project demo or code, whether:
+
+- All 4 CRUD operations exist for all data models
+- All views are linked to the main page of the app
+- Confirmation is used in delete
+- How deep the links are in your app
+- Are all views created for all operations, or do you rely on Django admin, and what is your justification if using Django admin.
+- Is there enough and useful data in the system when performing the demo
+- How well does the django models reflect the ERD and whether ERD is appropriate given the requirements
