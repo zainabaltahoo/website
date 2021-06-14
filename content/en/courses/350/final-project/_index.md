@@ -81,7 +81,7 @@ Teams are expected to utilize what they have learned in this course about GitHub
  2. Naming of paths, view functions, and models
  3. How appropriate are the model definitions
  4. How well the code meets the minimum requirements mentions in the requirements sections above (number of views ..etc)
- 5. Include Bonus.md file in the main directory of the project and list any new features that you used that we haven't talked about in class. Be sure to list the bonuses and mentioned in which file we can see the bonus work and line number. **Failure to follow this instruction would mean that the project team would not receive any bonus points**.
+ 5. Include a list of bonus additions in the main Readme.md file. List any new features that you used that we haven't talked about in class. Be sure to list each bonus and in which file/line number the work is done. **Failure to follow this instruction would mean that the project team would not receive any bonus points, only listed bonus items will receive grades**.
 
 ### Code and Demo Evaluation
 
