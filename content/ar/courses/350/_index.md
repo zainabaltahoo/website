@@ -38,7 +38,7 @@ image:
 سنستخدك موقع replit.com كأداة التطوير الأساسية لهذا المقرر، والمطلوب من جميع الطلبة اتمام الآتي استعداداً للمقرر:
 
 - قراءة  [الخطة التعليمية للمقرر](https://bit.ly/mis350_syl)
-- التسجيل [في فريق replit للمقرر](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
+- التسجيل [في فريق replit للمقرر](https://replit.com/teams/join/apgdmxvisgioqrsdtgzkbnwyswssbyvi-ISOM350Fall21)
 - التسجيل في خدمة [{{< icon name="github" pack="fab" >}}github.com](https://github.com/join)
   - ثم المشاركة [ بفريق المقرر على {{< icon name="github" pack="fab" >}}GitHub](https://classroom.github.com/classrooms/17110202-mis350-spring21)
 - اتمام مقرر مبادئ في البمجة (لا يشترط أن يكون بلغة البايثون)

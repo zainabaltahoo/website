@@ -38,7 +38,7 @@ image:
 We will mainly use the replit.com cloud IDE for development. To setup for this course, you will be required to perform the following:
 
 - Read the [Syllabus](https://bit.ly/mis350_syl)
-- Signup for [class replit team](https://replit.com/teams/join/slpharshbwpedtcbfdfsnrkqjlkjpabh-miscba)
+- Signup for [class replit team](https://replit.com/teams/join/apgdmxvisgioqrsdtgzkbnwyswssbyvi-ISOM350Fall21)
 - Signup for [{{< icon name="github" pack="fab" >}}github.com](https://github.com/join)
   - Complete the first [GitHub assignment to join our GitHub classroom](https://classroom.github.com/a/vOMY045D)
 - Completion of an introductory course in programming (Doesn't have to be Python)
