@@ -19,7 +19,7 @@ draft: false
 
 ---
 
-Data-Driven views are just [regular views in Django]({{< ref "courses/350/blog-project/views.md" >}}), except that they use the model later to fetch/store data from the database.
+Data-Driven views are just [regular views in Django]({{< ref "courses/350/django-basics/views.md" >}}), except that they use the model later to fetch/store data from the database.
 
 With data-driven views, you take advantage of the Django ORM to build views that perform the basic CRUD operations:
   1. Fetch data **(Focus of this section)**
@@ -55,18 +55,18 @@ def list_posts(request):
 
 ```
 
-The code is identical to a [regular view in Django]({{< ref "courses/350/blog-project/views.md" >}}), so we will describe only the new lines related to fetching the data:
+The code is identical to a [regular view in Django]({{< ref "courses/350/django-basics/views.md" >}}), so we will describe only the new lines related to fetching the data:
 - Line #1: This is the statement that instructs Django to fetch all posts from the database. It consists of the following parts:
   - `posts =`: This is the variable that will hold the data fetched from the database. Since the data could include multiple posts, it will be a list of post objects. Everything you know about python lists applies here, but because it also allows for additional commands, it will be known as a **QuerySet**.
   - `Post`: This is the Post model. It means the command we are issuing to Django applies to the Post objects only.
   - `objects`: This is known as the model manager. All the commands that we can perform on the database table that contains the Post information is found under this objects model manager. When you read the line `Post.objects`, it should mean to you that we are performing an operation on all the Post objects (or records) in the database.
   - `all()`: This is the fetch operations. We want to fetch all Post objects. Later we will see that there are other function such as filter, that allow us to filter specific objects from all the Post objects in the database.
-- Line #2: Now that all the Post objects are stored in a list variable named `posts`, we want to deliver this data to the template so the template can display it. As we did with previously when [using templates for regular regular Django views]({{< ref "courses/350/blog-project/views.md" >}})
+- Line #2: Now that all the Post objects are stored in a list variable named `posts`, we want to deliver this data to the template so the template can display it. As we did with previously when [using templates for regular regular Django views]({{< ref "courses/350/django-basics/views.md" >}})
 
 
 #### Second Step:
 
-After creating the view, the next step is to wire the view to a url path. Since we previously [created a urls.py specific for our blog app]({{< ref "courses/350/blog-project/urls.md#improved-url-organization" >}}), we just need to update the `blog/urls.py` file to associate our `list_post` view with a path: 
+After creating the view, the next step is to wire the view to a url path. Since we previously [created a urls.py specific for our blog app]({{< ref "courses/350/django-basics/urls.md#improved-url-organization" >}}), we just need to update the `blog/urls.py` file to associate our `list_post` view with a path: 
 
 
 ```python
@@ -78,11 +78,11 @@ urlpatterns = [
 ]
 ```
 Code explanation:
-- Line #1: We placed all the paths for our blog url under the main path `/blog` when we improved [our app urls]({{< ref "courses/350/blog-project/urls.md#improved-url-organization" >}}). Therefore, associating a view function in `blog/urls.py` with an empty path means that it will be associated with the main `/blog` path only without any part after it. So to get the list, we access the path `/blog`.
+- Line #1: We placed all the paths for our blog url under the main path `/blog` when we improved [our app urls]({{< ref "courses/350/django-basics/urls.md#improved-url-organization" >}}). Therefore, associating a view function in `blog/urls.py` with an empty path means that it will be associated with the main `/blog` path only without any part after it. So to get the list, we access the path `/blog`.
 
 #### Third Step:
 
-Now all that remains is to create the template file `post_list.html` that we refered to [in `list_posts` view]({{< ref "#first-step" >}}). We must place the file in `/blog/templates/` and create the directory `templates` if it does not exist. 
+Now all that remains is to create the template file `post_list.html` that we referred to [in `list_posts` view]({{< ref "#first-step" >}}). We must place the file in `/blog/templates/` and create the directory `templates` if it does not exist. 
 
 **IMPORTANT NOTE:** Django is case sensitive. The templates directory must be named `templates` and placed inside `blog` directory.
 

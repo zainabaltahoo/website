@@ -39,3 +39,16 @@ design:
   #   4 = Citation (publication only)
   view: 1
 ---
+
+<!-- 
+proposed order:
+- intro
+- pyreview
+- Git and GitHub (individual focus)
+- Web applications
+- Django basics
+- Collaboration and Project Mgt (form teams)
+- Blog Project (in class exe, work as teams create tickets ..etc)
+- in parallel poll project (assignment work as teams)
+- Final project (I will give them requirements)
+ -->

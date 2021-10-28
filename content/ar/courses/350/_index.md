@@ -84,5 +84,5 @@ pip install django
 | 3 |  [إدارة المشروع]({{< ref "courses/350/intro/proj-mgt" >}}) | | [شارك في ترجمة هذا الموقع](https://github.com/mis350/website-translation) |
 | 3 |  [تطبيقات الويب]({{< ref "courses/350/intro/webapplications.md" >}}) | [{{< icon name="file-powerpoint" pack="fas" >}}]({{< ref "/slides/350/webapps" >}})  |  |
 | 4 |  [مقدمة لاستخدام Django]({{< ref "courses/350/intro/dev-process.md" >}}) | | |
-| 4 |  [إعداد المشروع]({{< ref "courses/350/blog-project/setup.md" >}}) | | |
+| 4 |  [إعداد المشروع]({{< ref "courses/350/django-basics/setup.md" >}}) | | |
 | 4 |  [نماذج البيانات]({{< ref "courses/350/blog-project/models.md" >}}) | | |
